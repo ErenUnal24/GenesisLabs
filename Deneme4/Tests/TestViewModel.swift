@@ -13,8 +13,6 @@
      @Published var tests: [Test] = []
      private var dataManager = TestDataManager()
      private var cancellables = Set<AnyCancellable>()
-     
-     //**
      @Published var searchText: String = ""
      @Published var searchType: SearchType = .tcNo
 
@@ -28,7 +26,7 @@
      }
      
      
-     //**
+     
      var filteredTests: [Test] {
              if searchText.isEmpty {
                  return tests
@@ -74,7 +72,7 @@
      
      
      
-     //**
+     
      enum SearchType {
              case tcNo
              case name

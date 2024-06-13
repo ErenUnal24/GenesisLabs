@@ -10,6 +10,9 @@ import SwiftUI
 struct AddTestView: View {
     
     @StateObject private var vm = AddTestViewModel()
+   // @StateObject private var dm = TestDataManager()
+
+    
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.dismiss) var dismiss
     @State var isUserSaveAlertShown: Bool = false
@@ -52,7 +55,19 @@ struct AddTestView: View {
                                             .foregroundColor(.red)
                                     }
                                 }
-                
+     
+                 //NUMUNE TÜRÜ
+                Section(header: Text("Numune Türü")) {
+                    Picker("Numune Tipi", selection: $vm.newTest.sampleType.sampleType) {
+                        ForEach(Test.SampleType.SampleTypeEnum.allCases) { item in
+                            Text(item.rawValue.uppercased())
+                        }
+                    }                   
+                    .pickerStyle(MenuPickerStyle())
+                    
+                    
+                }
+
                 //TEST TYPE
                 Section(header: Text("Test Türü")) {
                     Picker("Test Tipi", selection: $vm.newTest.testType.testType) {
@@ -60,45 +75,33 @@ struct AddTestView: View {
                             Text(item.rawValue.uppercased())
                         }
                     }
+                    .pickerStyle(MenuPickerStyle())
+                    Divider()
+                    
                 }
-                 //NUMUNE TÜRÜ
-                Section(header: Text("Numune Türü")) {
-                    Picker("Numune Tipi", selection: $vm.newTest.sampleType.sampleType) {
-                        ForEach(Test.SampleType.SampleTypeEnum.allCases) { item in
-                            Text(item.rawValue.uppercased())
-                        }
-                    }
-                }
-                               
                                 
-                                Button(action: {
-                                    if vm.isValid {
-                                       // vm.saveTest()
-                                       // presentationMode.wrappedValue.dismiss()
-                                        isUserSaveAlertShown.toggle()
-                                    }
-                                }) {
-                                    Text("TEST OLUŞTUR")
-                                }
-                                .alert(isPresented: $isUserSaveAlertShown, content: {
-                                Alert(
-                                    title: Text("\(vm.newTest.patient.general.name) Adlı ve \(vm.newTest.patient.general.tcNo) T.C. No'lu hasta için test oluşturmak istediğinize emin misiniz?"),
-                                    primaryButton: .default(Text("Evet")) {
-                                        vm.saveTest()
-                                        dismiss()
-                                    },
-                                    secondaryButton: .cancel(Text("Hayır"))
-                                )
-                                })
-                                .disabled(!vm.isValid)
-                            }
-                            .navigationBarTitle("Add New Test", displayMode: .inline)
-                            .navigationBarItems(trailing: Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "xmark")
-                            })
-        }
+                
+                Section {
+                                  Button(action: {
+                                      if vm.isValid {
+                                          vm.saveTest()
+                                          //dm.addTest(Test.emptyTest)
+                                          isUserSaveAlertShown.toggle()
+                                      } else {
+                                          print("Error")
+                                      }
+                                  }) {
+                                      Text("Kaydet")
+                                  }
+                              }
+                          }
+                          .navigationBarTitle("Yeni Test Ekle", displayMode: .inline)
+                          .alert("Kullanıcı kaydedildi", isPresented: $isUserSaveAlertShown) {
+                              Button("Tamam", role: .cancel) { dismiss() }
+                          }
+                      }
+                
+                       
         
     }
 }

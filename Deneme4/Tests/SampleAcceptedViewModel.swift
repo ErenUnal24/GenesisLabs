@@ -45,21 +45,7 @@ class SampleAcceptedViewModel: ObservableObject {
     func fetchTests() {
         dataManager.fetchSampleAcceptedTests()
     }
-    /*
-    func add(_ tests: Test) {
-        // Veritabanına ekleme işlemi burada yapılacak
-        // Örnek olarak diziye ekleme işlemi:
-        tests.append(tests)
-    }
-    
-    func updatePatient(_ patient: Patient) {
-            // Hasta güncelleme işlemleri
-            if let index = patients.firstIndex(where: { $0.id == patient.id }) {
-                patients[index] = patient
-            }
-        }
-    
-    */
+   
     
     func isValid(patient: Patient) -> Bool {
             !patient.general.name.isEmpty &&

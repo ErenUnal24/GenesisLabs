@@ -1,13 +1,13 @@
 //
-//  SampleAcceptedView.swift
+//  ResultWaitingView.swift
 //  Deneme4
 //
-//  Created by Eren on 11.06.2024.
+//  Created by Eren on 12.06.2024.
 //
 
 import SwiftUI
 
-struct SampleAcceptedView: View {
+struct ResultWaitingView: View {
     @StateObject private var dm = TestDataManager()
     @StateObject private var vm = SampleAcceptedViewModel()
     @State private var shouldShowSampleAccepted: Bool = false
@@ -29,17 +29,19 @@ struct SampleAcceptedView: View {
                 
                 
                 List(vm.filteredTests) { test in
-                    NavigationLink(destination: StatusUpdateView(dm: dm, test: test)) {
+                    NavigationLink(destination: AddResultsView(test: test, dataManager: dm)) {
                         
                     
                     VStack(alignment: .leading) {
                         Text("Test Type: \(test.testType)")
                             .font(.headline)
-                        Text("Hasta Adı: \(test.patient.general.name)")
+                        Text("Patient Name: \(test.patient.general.name)")
                             .font(.subheadline)
-                        Text("Hasta TC : \(test.patient.general.tcNo)")
+                        Text("Patient TCNo: \(test.patient.general.tcNo)")
                             .font(.subheadline)
-                        Text("Status     : \(test.status.status.rawValue)")
+                        Text("Patient Ad: \(test.patient.general.name)")
+                            .font(.subheadline)
+                        Text("Status: \(test.status.status.rawValue)")
                             .font(.subheadline)
                     }
                     .padding()
@@ -58,27 +60,9 @@ struct SampleAcceptedView: View {
 
 
 
-struct TestDetailsView: View {
-    var test: Test
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Test Type: \(test.testType)")
-                .font(.headline)
-            Text("Patient Name: \(test.patient.general.name)")
-                .font(.subheadline)
-            Text("Patient TCNo: \(test.patient.general.tcNo)")
-                .font(.subheadline)
-            Text("Patient Ad: \(test.patient.general.name)")
-                .font(.subheadline)
-            Text("Status: \(test.status.status.rawValue)")
-                .font(.subheadline)
-        }
-        .padding()
-        .navigationTitle("Test Detail")
-    }
-}
+
 
 #Preview {
-    SampleAcceptedView()
+    ResultWaitingView()
 }
+

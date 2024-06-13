@@ -10,12 +10,17 @@ import Firebase
 final class UpdateTestViewModel: ObservableObject {
     
     var dataManager = TestDataManager()
+    
     @Published var tests: [Test] = []
 
     
     @Published var newTest: Test = .emptyTest
     @Published var patientTCNo: String = ""  // Kullanıcının girdiği TC kimlik numarasını saklayacak değişken
     @Published var patientExists: Bool = false  // Hastanın var olup olmadığını kontrol etmek için
+    
+    //**
+    var dm = AddTestViewModel()
+    //**
 
     
     var isValid: Bool {
@@ -33,6 +38,7 @@ final class UpdateTestViewModel: ObservableObject {
     func saveTest() {
         newTest.patient.general.tcNo = patientTCNo
         dataManager.addTest(newTest)
+        
     }
     
     

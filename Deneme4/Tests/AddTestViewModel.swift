@@ -11,14 +11,15 @@ import Firebase
 final class AddTestViewModel: ObservableObject {
     
     var dataManager = TestDataManager()
-    
     @Published var newTest: Test = .emptyTest
-    @Published var patientTCNo: String = ""  // Kullanıcının girdiği TC kimlik numarasını saklayacak değişken
+    @Published var patientTCNo: String = ""  // Kullanıcının girdiği TC kimlik numarasını saklayacak
     @Published var patientExists: Bool = false  // Hastanın var olup olmadığını kontrol etmek için
 
     
     var isValid: Bool {
             !patientTCNo.isEmpty && newTest.patient.general.tcNo == patientTCNo
+        //        return !patientTCNo.isEmpty && newTest.testType.testType != .seciniz && newTest.sampleType.sampleType != .seciniz
+
         }
     
     func clearAll() {
@@ -39,59 +40,70 @@ final class AddTestViewModel: ObservableObject {
                     return
                 }
                 
-                guard let documents = snapshot?.documents, !documents.isEmpty else {
+                guard let documents = snapshot?.documents, /*!documents.isEmpty*/ let document = documents.first else {
                     self.patientExists = false
                     return
                 }
-                
-                if let document = documents.first {
-                    let data = document.data()
-                    let id = UUID()
-                    let name = data["name"] as? String ?? ""
-                    let genderString = data["gender"] as? String ?? ""
-                    let gender = Patient.General.Gender(rawValue: genderString) ?? .Erkek
-                    let birthdate = (data["birthdate"] as? Timestamp)?.dateValue() ?? Date()
-                    let phoneNumber = data["phoneNumber"] as? String ?? ""
-                    let email = data["email"] as? String ?? ""
-                 //   let testTypeString = data["testType"] as? String ?? ""
-                 //   let testType = Patient.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
-                    let isEmergency = data["isEmergency"] as? Bool ?? false
-                    let emergencyNotes = data["emergencyNotes"] as? String ?? ""
-                    
-                    let patient = Patient(
-                        id: id,
-                        documentID: document.documentID,
-                        general: Patient.General(name: name, gender: gender, birthdate: birthdate, tcNo: self.patientTCNo),
-                        contact: Patient.Contact(phoneNumber: phoneNumber, email: email),
-                      //  testType: Patient.TestType(testType: testType),
-                        emergency: Patient.Emergency(isEmergency: isEmergency, notes: emergencyNotes)
-                       // status: Test.Status(status: status)
-                    )
-                    
-                    DispatchQueue.main.async {
-                        self.newTest = Test(id: UUID(), documentID: nil, patient: patient, status: Test.Status(status: .numuneBekliyor), testType: Test.TestType(testType: .seciniz), sampleType: Test.SampleType(sampleType: .seciniz))
-                        self.patientExists = true
-                    }
-                }
+            
+                let data = document.data()
+                            let patient = Patient(
+                                id: UUID(),
+                                documentID: document.documentID,
+                                general: Patient.General(
+                                    name: data["name"] as? String ?? "",
+                                    gender: Patient.General.Gender(rawValue: data["gender"] as? String ?? "") ?? .Erkek,
+                                    birthdate: (data["birthdate"] as? Timestamp)?.dateValue() ?? Date(),
+                                    tcNo: self.patientTCNo
+                                ),
+                                contact: Patient.Contact(
+                                    phoneNumber: data["phoneNumber"] as? String ?? "",
+                                    email: data["email"] as? String ?? ""
+                                ),
+                                emergency: Patient.Emergency(
+                                    isEmergency: data["isEmergency"] as? Bool ?? false,
+                                    notes: data["emergencyNotes"] as? String ?? ""
+                                )
+                            )
+                            
+                            DispatchQueue.main.async {
+                                self.newTest = Test(
+                                    id: UUID(),
+                                    documentID: nil,
+                                    patient: patient,
+                                    status: Test.Status(status: .numuneBekliyor),
+                                    testType: Test.TestType(testType: .seciniz),
+                                    sampleType: Test.SampleType(sampleType: .seciniz),
+                                    parameters: [:] // Yeni alanın başlangıç değeri
+
+                                )
+                                self.patientExists = true
+                            }
             }
         }
-    //***
-    
-    //**
-    
-    //**
-    
-    
+  
+    /*
     func saveTest() {
-        newTest.patient.general.tcNo = patientTCNo
+            newTest.patient.general.tcNo = patientTCNo
+            
+            // Add default parameters based on test type
+            let requiredParameters = newTest.testType.testType.requiredParameters
+            for param in requiredParameters {
+                newTest.parameters[param] = "0"
+            }
+
+            if newTest.documentID == nil {
+                dataManager.addTest(newTest)
+            } else {
+                dataManager.updateTestWithParameters(newTest)
+            }
+        }
+   */
+    func saveTest() {
         dataManager.addTest(newTest)
     }
     
-    /*
-    func editTest() {
-        dataManager.updateTest(newTest)
-    }
-    */
+    
+    
      
     func deleteTest() {
         dataManager.deleteTest(newTest)
@@ -99,48 +111,4 @@ final class AddTestViewModel: ObservableObject {
 
 }
 
-// Test struct'ına uygun bir emptyTest eklentisi
-/*
-extension Test {
-    static var emptyTest: Test {
-        let general = Patient.General(
-            name: "",
-            gender: .Erkek,
-            birthdate: Date(),
-            tcNo: ""
-        )
-        
-        let contact = Patient.Contact(
-            phoneNumber: "",
-            email: ""
-        )
-        
-        let emergency = Patient.Emergency(
-            isEmergency: false,
-            notes: ""
-        )
-        
-        let testType = Patient.TestType(
-            testType: .ces
-        )
-        
-        let patient = Patient(
-            id: UUID(),
-            documentID: nil,
-            general: general,
-            contact: contact,
-            testType: testType,
-            emergency: emergency
-        )
-        
-        return Test(
-            id: UUID(),
-            documentID: nil,
-            patient: patient,
-            status: Test.Status.StatusEnum
-        )
-    }
-}
 
-
-*/

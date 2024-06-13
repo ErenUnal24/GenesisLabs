@@ -17,14 +17,15 @@ struct MenuViewLab: View {
                 }
                 .padding(.vertical)
                 
-                NavigationLink(destination: SampleWaitingView()) {
-                    MenuRow(icon: "flask", title: "Numune Bekleyen")
+                NavigationLink(destination: ResultWaitingView()) {
+                    MenuRow(icon: "flask", title: "Test Bekleyen")
                 }
                 .padding(.vertical)
                 
                 
-                NavigationLink(destination: SampleAcceptedView()) {
-                    MenuRow(icon: "flask.fill", title: "Numunesi Alınmış")
+                
+                NavigationLink(destination: ResultAcceptedView()) {
+                    MenuRow(icon: "flask.fill", title: "Tamamlananlar")
                 }
                 .padding(.vertical)
    

@@ -14,18 +14,18 @@ struct Test: Identifiable, Codable {
     var patient: Patient
     var status : Status
     var testType: TestType
-    
     var tcNo: String {
         return patient.general.tcNo
     }
     var sampleType: SampleType
     
-    /*
-     var testType: String {
-     return patient.testType.testType.rawValue
-     }
-     */
+    var parameters: [String: String] = [:] //yeni ekledim
+    
+    var analysis: String?
+    
 }
+
+
 
 extension Test {
     struct TestType: Codable {
@@ -42,13 +42,24 @@ extension Test.TestType {
         case tekgen  = "Tek Gen Dizi Analizi"
         case cftr = "CFTR Dizi Analizi"
         case smn1 = "SMN1-2 Delesyon Duplikasyon Analizi"
-        case kalıtsalkanser = "Kalıtsal Kanser Paneli"
+        case kalitsalkanser = "Kalıtsal Kanser Paneli"
         case hiperamoni = "Hiperamonemi Gen Paneli"
-
-
+        
+        var requiredParameters: [String] {
+            switch self {
+            case .ces, .tekgen, .cftr, .kalitsalkanser, .hiperamoni:
+                            return ["gen", "ref", "varyant", "alt", "vf"]
+                        case .smn1:
+                            return ["gen", "exon", "Kopya Sayısı"]
+                        default:
+                            return []
+                        }
+        }
     }
 }
 
+
+ 
 extension Test {
     struct SampleType: Codable {
         var sampleType: SampleTypeEnum
@@ -88,6 +99,8 @@ extension Test.Status {
 
 
 
+
+
 extension Test {
     static var emptyTest: Test {
         let emptyPatient = Patient.emptyPatient
@@ -95,6 +108,9 @@ extension Test {
         let testType = Test.TestType(testType: Test.TestType.TestTypeEnum.allCases.first!)
         let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum.allCases.first!)
         
+        
+        
         return Test(id: UUID(), documentID: nil, patient: emptyPatient, status: status, testType: testType, sampleType: sampleType)
+
     }
 }
