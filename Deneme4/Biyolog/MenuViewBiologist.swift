@@ -23,20 +23,17 @@ struct MenuViewBiologist: View {
                 
                 
                 
-                NavigationLink(destination: ResultAcceptedView()) {
-                    MenuRow(icon: "flask.fill", title: "Analizi Yapılan")
-                }
-                .padding(.vertical)
-                
-                NavigationLink(destination: ResultAcceptedView()) {
+                NavigationLink(destination: ReportWaitingView()) {
                     MenuRow(icon: "flask.fill", title: "Rapor Bekleyen")
                 }
                 .padding(.vertical)
                 
-                NavigationLink(destination: ResultAcceptedView()) {
-                    MenuRow(icon: "flask.fill", title: "Raporlar")
+                NavigationLink(destination: ReportedView()) {
+                    MenuRow(icon: "flask.fill", title: "Raporlanmış")
                 }
                 .padding(.vertical)
+                
+                
    
             }
             .navigationTitle("Analiz ve Rapor")

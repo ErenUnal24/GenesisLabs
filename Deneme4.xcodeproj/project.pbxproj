@@ -43,6 +43,12 @@
 		7BE198E22C1B274E007BC856 /* AddAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198E12C1B274E007BC856 /* AddAnalysisView.swift */; };
 		7BE198E42C1B2A8A007BC856 /* AnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198E32C1B2A8A007BC856 /* AnalysisViewModel.swift */; };
 		7BE198E62C1BA76E007BC856 /* AddAnalysisSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198E52C1BA76E007BC856 /* AddAnalysisSheet.swift */; };
+		7BE198E82C1BB43A007BC856 /* ReportWaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198E72C1BB43A007BC856 /* ReportWaitingView.swift */; };
+		7BE198EA2C1BB59A007BC856 /* ReportWaitingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198E92C1BB59A007BC856 /* ReportWaitingViewModel.swift */; };
+		7BE198EC2C1BB942007BC856 /* AddReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198EB2C1BB942007BC856 /* AddReportsView.swift */; };
+		7BE198F12C1BC4B6007BC856 /* Pdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198F02C1BC4B6007BC856 /* Pdf.swift */; };
+		7BE198F52C1BC698007BC856 /* ReportedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198F42C1BC698007BC856 /* ReportedView.swift */; };
+		7BE198F72C1BC75C007BC856 /* ReportedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198F62C1BC75C007BC856 /* ReportedViewModel.swift */; };
 		7BE8E5E82BFE4E7600B2E25B /* Deneme4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE8E5E72BFE4E7600B2E25B /* Deneme4App.swift */; };
 		7BE8E5EA2BFE4E7600B2E25B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE8E5E92BFE4E7600B2E25B /* ContentView.swift */; };
 		7BE8E5EC2BFE4E7800B2E25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE8E5EB2BFE4E7800B2E25B /* Assets.xcassets */; };
@@ -122,6 +128,12 @@
 		7BE198E12C1B274E007BC856 /* AddAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnalysisView.swift; sourceTree = "<group>"; };
 		7BE198E32C1B2A8A007BC856 /* AnalysisViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisViewModel.swift; sourceTree = "<group>"; };
 		7BE198E52C1BA76E007BC856 /* AddAnalysisSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnalysisSheet.swift; sourceTree = "<group>"; };
+		7BE198E72C1BB43A007BC856 /* ReportWaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportWaitingView.swift; sourceTree = "<group>"; };
+		7BE198E92C1BB59A007BC856 /* ReportWaitingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportWaitingViewModel.swift; sourceTree = "<group>"; };
+		7BE198EB2C1BB942007BC856 /* AddReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReportsView.swift; sourceTree = "<group>"; };
+		7BE198F02C1BC4B6007BC856 /* Pdf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pdf.swift; sourceTree = "<group>"; };
+		7BE198F42C1BC698007BC856 /* ReportedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedView.swift; sourceTree = "<group>"; };
+		7BE198F62C1BC75C007BC856 /* ReportedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedViewModel.swift; sourceTree = "<group>"; };
 		7BE8E5E42BFE4E7600B2E25B /* Deneme4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deneme4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE8E5E72BFE4E7600B2E25B /* Deneme4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deneme4App.swift; sourceTree = "<group>"; };
 		7BE8E5E92BFE4E7600B2E25B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -218,10 +230,10 @@
 			children = (
 				7BE198CD2C18D8CD007BC856 /* MenuViewLab.swift */,
 				7BE198CF2C1A2C9C007BC856 /* ResultWaitingView.swift */,
-				7BE198D52C1B0D71007BC856 /* ResultAcceptedView.swift */,
 				7BE198D12C1A2E08007BC856 /* AddResultsView.swift */,
-				7BE198D32C1A2E8A007BC856 /* TestResultsViewModel.swift */,
+				7BE198D52C1B0D71007BC856 /* ResultAcceptedView.swift */,
 				7BE198D72C1B1DAB007BC856 /* ResultAcceptedViewModel.swift */,
+				7BE198D32C1A2E8A007BC856 /* TestResultsViewModel.swift */,
 				7BE198D92C1B1E70007BC856 /* TestDetailView.swift */,
 			);
 			path = Laboratuvar;
@@ -235,6 +247,11 @@
 				7BE198E12C1B274E007BC856 /* AddAnalysisView.swift */,
 				7BE198E32C1B2A8A007BC856 /* AnalysisViewModel.swift */,
 				7BE198E52C1BA76E007BC856 /* AddAnalysisSheet.swift */,
+				7BE198E72C1BB43A007BC856 /* ReportWaitingView.swift */,
+				7BE198E92C1BB59A007BC856 /* ReportWaitingViewModel.swift */,
+				7BE198EB2C1BB942007BC856 /* AddReportsView.swift */,
+				7BE198F42C1BC698007BC856 /* ReportedView.swift */,
+				7BE198F62C1BC75C007BC856 /* ReportedViewModel.swift */,
 			);
 			path = Biyolog;
 			sourceTree = "<group>";
@@ -279,6 +296,14 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		7BE198EF2C1BC493007BC856 /* PDFKit */ = {
+			isa = PBXGroup;
+			children = (
+				7BE198F02C1BC4B6007BC856 /* Pdf.swift */,
+			);
+			path = PDFKit;
+			sourceTree = "<group>";
+		};
 		7BE8E5DB2BFE4E7600B2E25B = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +329,7 @@
 			children = (
 				7BE8E5E72BFE4E7600B2E25B /* Deneme4App.swift */,
 				7BE8E5E92BFE4E7600B2E25B /* ContentView.swift */,
+				7BE198EF2C1BC493007BC856 /* PDFKit */,
 				7B372AF32C138F1C00D07750 /* Biyolog */,
 				7B372AF22C138EF600D07750 /* Laboratuvar */,
 				7B372AEB2C136CC800D07750 /* NumuneKabul */,
@@ -523,13 +549,16 @@
 				7BE198C42C188414007BC856 /* SampleWaitingView.swift in Sources */,
 				7BD53D5B2C0212E600B52563 /* MenuView.swift in Sources */,
 				7BE198C62C18A8CE007BC856 /* SampleAcceptedView.swift in Sources */,
+				7BE198F72C1BC75C007BC856 /* ReportedViewModel.swift in Sources */,
 				7BE8E5EA2BFE4E7600B2E25B /* ContentView.swift in Sources */,
 				7BE8E5E82BFE4E7600B2E25B /* Deneme4App.swift in Sources */,
+				7BE198EA2C1BB59A007BC856 /* ReportWaitingViewModel.swift in Sources */,
 				7B2D76732C0CC35B000914A4 /* AddPatientViewModel.swift in Sources */,
 				7BE198CC2C18B00C007BC856 /* StatusUpdateView.swift in Sources */,
 				7BEB40832C10301C0068E3E2 /* DataManager.swift in Sources */,
 				7BE198CE2C18D8CD007BC856 /* MenuViewLab.swift in Sources */,
 				7BE198D02C1A2C9C007BC856 /* ResultWaitingView.swift in Sources */,
+				7BE198E82C1BB43A007BC856 /* ReportWaitingView.swift in Sources */,
 				7B2D76772C0CEE3F000914A4 /* PatientViewModel.swift in Sources */,
 				7BE198DA2C1B1E70007BC856 /* TestDetailView.swift in Sources */,
 				7BE8E62C2BFE6F7400B2E25B /* RootView.swift in Sources */,
@@ -540,9 +569,12 @@
 				7BD53D622C021F5000B52563 /* SearchBar.swift in Sources */,
 				7BE198E42C1B2A8A007BC856 /* AnalysisViewModel.swift in Sources */,
 				7BE198C12C17CD0D007BC856 /* AddTestView.swift in Sources */,
+				7BE198EC2C1BB942007BC856 /* AddReportsView.swift in Sources */,
 				7BE198C82C18ADC0007BC856 /* SampleAcceptedViewModel.swift in Sources */,
 				7BE198E22C1B274E007BC856 /* AddAnalysisView.swift in Sources */,
+				7BE198F52C1BC698007BC856 /* ReportedView.swift in Sources */,
 				7BE198CA2C18AE72007BC856 /* UpdateTestViewModel.swift in Sources */,
+				7BE198F12C1BC4B6007BC856 /* Pdf.swift in Sources */,
 				7B2D76712C0CB893000914A4 /* Patient.swift in Sources */,
 				7B2D766F2C0CAC2E000914A4 /* AddPatientView.swift in Sources */,
 				7BE198B52C17BDEB007BC856 /* AddUserView.swift in Sources */,

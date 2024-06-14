@@ -359,6 +359,187 @@ class TestDataManager: ObservableObject {
             }
         }
     }
+    
+    
+    
+    func fetchReportsWaiting() {
+        tests.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection("Tests").whereField("status", isEqualTo: "Rapor Bekliyor")
+        ref.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let documentID = document.documentID
+                    let patientID = data["patientID"] as? String ?? ""
+                    // let testTypeString = data["testType"] as? String ?? ""
+                    //  let testType = Patient.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
+                    let statusString = data["status"] as? String ?? ""
+                    let status = Test.Status(status: Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor)
+                    //**
+                    let testTypeString = data["testType"] as? String ?? ""
+                    //let testType           = Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
+                    let testType = Test.TestType(testType: Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .seciniz)
+                    let sampleTypeString = data["sampleType"] as? String ?? ""
+                    let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
+                    
+                    //**
+                    
+                    // Patient bilgilerini Firestore'dan al
+                    let patientRef = db.collection("Patients").document(patientID)
+                    patientRef.getDocument { (patientDocument, error) in
+                        guard let patientData = patientDocument?.data(), error == nil else {
+                            print(error?.localizedDescription ?? "Error fetching patient")
+                            return
+                        }
+                        
+                        let patientName = patientData["name"] as? String ?? ""
+                        let patientGenderString = patientData["gender"] as? String ?? ""
+                        let patientGender = Patient.General.Gender(rawValue: patientGenderString) ?? .Erkek
+                        let patientBirthdate = (patientData["birthdate"] as? Timestamp)?.dateValue() ?? Date()
+                        let patientTcNo = patientData["tcNo"] as? String ?? ""
+                        //  let statusString    = data["status"] as? String ?? ""
+                        // let status           = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
+                        
+                        let patient = Patient(
+                            id: UUID(),
+                            documentID: patientID,
+                            general: Patient.General(
+                                name: patientName,
+                                gender: patientGender,
+                                birthdate: patientBirthdate,
+                                tcNo: patientTcNo
+                            ),
+                            contact: Patient.Contact(
+                                phoneNumber: patientData["phoneNumber"] as? String ?? "",
+                                email: patientData["email"] as? String ?? ""
+                            ),
+                            //   testType: Patient.TestType(testType: testType),
+                            emergency: Patient.Emergency(
+                                isEmergency: patientData["isEmergency"] as? Bool ?? false,
+                                notes: patientData["notes"] as? String ?? ""
+                                //      status: Test.Status(status: status)
+                            )
+                        )
+                        
+                        let test = Test(
+                            id: UUID(),
+                            documentID: documentID,
+                            patient: patient,
+                           // status: Test.Status(status: status),
+                            status: status,
+                            //testType: Test.TestType(testType: testType)
+                            testType: testType,
+                            sampleType: sampleType
+                            
+                           
+                            
+                        )
+                        
+                        DispatchQueue.main.async {
+                            self.tests.append(test)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    func fetchReported() {
+        tests.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection("Tests").whereField("status", isEqualTo: "Rapor Oluştu")
+        ref.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let documentID = document.documentID
+                    let patientID = data["patientID"] as? String ?? ""
+                    // let testTypeString = data["testType"] as? String ?? ""
+                    //  let testType = Patient.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
+                    let statusString = data["status"] as? String ?? ""
+                    let status = Test.Status(status: Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor)
+                    //**
+                    let testTypeString = data["testType"] as? String ?? ""
+                    //let testType           = Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
+                    let testType = Test.TestType(testType: Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .seciniz)
+                    let sampleTypeString = data["sampleType"] as? String ?? ""
+                    let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
+                    
+                    //**
+                    
+                    // Patient bilgilerini Firestore'dan al
+                    let patientRef = db.collection("Patients").document(patientID)
+                    patientRef.getDocument { (patientDocument, error) in
+                        guard let patientData = patientDocument?.data(), error == nil else {
+                            print(error?.localizedDescription ?? "Error fetching patient")
+                            return
+                        }
+                        
+                        let patientName = patientData["name"] as? String ?? ""
+                        let patientGenderString = patientData["gender"] as? String ?? ""
+                        let patientGender = Patient.General.Gender(rawValue: patientGenderString) ?? .Erkek
+                        let patientBirthdate = (patientData["birthdate"] as? Timestamp)?.dateValue() ?? Date()
+                        let patientTcNo = patientData["tcNo"] as? String ?? ""
+                        //  let statusString    = data["status"] as? String ?? ""
+                        // let status           = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
+                        
+                        let patient = Patient(
+                            id: UUID(),
+                            documentID: patientID,
+                            general: Patient.General(
+                                name: patientName,
+                                gender: patientGender,
+                                birthdate: patientBirthdate,
+                                tcNo: patientTcNo
+                            ),
+                            contact: Patient.Contact(
+                                phoneNumber: patientData["phoneNumber"] as? String ?? "",
+                                email: patientData["email"] as? String ?? ""
+                            ),
+                            //   testType: Patient.TestType(testType: testType),
+                            emergency: Patient.Emergency(
+                                isEmergency: patientData["isEmergency"] as? Bool ?? false,
+                                notes: patientData["notes"] as? String ?? ""
+                                //      status: Test.Status(status: status)
+                            )
+                        )
+                        
+                        let test = Test(
+                            id: UUID(),
+                            documentID: documentID,
+                            patient: patient,
+                           // status: Test.Status(status: status),
+                            status: status,
+                            //testType: Test.TestType(testType: testType)
+                            testType: testType,
+                            sampleType: sampleType
+                            
+                           
+                            
+                        )
+                        
+                        DispatchQueue.main.async {
+                            self.tests.append(test)
+                        }
+                    }
+                }
+            }
+        }
+    }
         
         //******
     
@@ -505,7 +686,24 @@ class TestDataManager: ObservableObject {
         }
     
     
+    //RAPOR KAYDETME
+    func saveReport(for test: Test, report: String) {
+            let db = Firestore.firestore()
+            let testRef = db.collection("Tests").document(test.documentID ?? "")
+            
+            testRef.updateData([
+                "report": report,
+                "status": "Rapor Oluştu"
+            ]) { error in
+                if let error = error {
+                    print("Error updating document: \(error)")
+                } else {
+                    print("Analysis successfully updated")
+                }
+            }
+        }
     
+
     
     
     

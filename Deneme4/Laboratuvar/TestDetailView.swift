@@ -5,6 +5,8 @@
 //  Created by Eren on 13.06.2024.
 //
 
+
+/*
 import SwiftUI
 
 struct TestDetailView: View {
@@ -28,3 +30,4 @@ struct TestDetailView: View {
         .navigationTitle("Test Detayları")
     }
 }
+*/

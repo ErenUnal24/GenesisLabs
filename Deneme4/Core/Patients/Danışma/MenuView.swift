@@ -26,7 +26,7 @@ struct MenuView: View {
                     }
                     
                     Divider()
-                    
+                     
                     Button(action: {
                         shouldShowCreatePatient.toggle()
                     }) {

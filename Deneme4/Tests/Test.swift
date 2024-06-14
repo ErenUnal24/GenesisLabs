@@ -23,6 +23,8 @@ struct Test: Identifiable, Codable {
     
     var analysis: String?
     
+    var report : String?
+    
 }
 
 
