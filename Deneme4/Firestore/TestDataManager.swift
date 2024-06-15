@@ -27,19 +27,12 @@ class TestDataManager: ObservableObject {
                     let data = document.data()
                     let documentID = document.documentID
                     let patientID = data["patientID"] as? String ?? ""
-                    // let testTypeString = data["testType"] as? String ?? ""
-                    //  let testType = Patient.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                     let statusString = data["status"] as? String ?? ""
                     let status = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
-                    //**
                     let testTypeString     = data["testType"] as? String ?? ""
-                    //let testType           = Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                     let testType = Test.TestType(testType: Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .seciniz)
-                    
                     let sampleTypeString = data["sampleType"] as? String ?? ""
                     let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
-                    
-                    //**
                     
                     // Patient bilgilerini Firestore'dan al
                     let patientRef = db.collection("Patients").document(patientID)
@@ -48,14 +41,11 @@ class TestDataManager: ObservableObject {
                             print(error?.localizedDescription ?? "Error fetching patient")
                             return
                         }
-                        
                         let patientName = patientData["name"] as? String ?? ""
                         let patientGenderString = patientData["gender"] as? String ?? ""
                         let patientGender = Patient.General.Gender(rawValue: patientGenderString) ?? .Erkek
                         let patientBirthdate = (patientData["birthdate"] as? Timestamp)?.dateValue() ?? Date()
                         let patientTcNo = patientData["tcNo"] as? String ?? ""
-                        //  let statusString    = data["status"] as? String ?? ""
-                        // let status           = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
                         
                         let patient = Patient(
                             id: UUID(),
@@ -70,11 +60,9 @@ class TestDataManager: ObservableObject {
                                 phoneNumber: patientData["phoneNumber"] as? String ?? "",
                                 email: patientData["email"] as? String ?? ""
                             ),
-                            //   testType: Patient.TestType(testType: testType),
                             emergency: Patient.Emergency(
                                 isEmergency: patientData["isEmergency"] as? Bool ?? false,
                                 notes: patientData["notes"] as? String ?? ""
-                                //      status: Test.Status(status: status)
                             )
                         )
                         
@@ -83,7 +71,6 @@ class TestDataManager: ObservableObject {
                             documentID: documentID,
                             patient: patient,
                             status: Test.Status(status: status),
-                            //testType: Test.TestType(testType: testType)
                             testType: testType,
                             sampleType: sampleType
                             
@@ -114,18 +101,12 @@ class TestDataManager: ObservableObject {
                     let data = document.data()
                     let documentID = document.documentID
                     let patientID = data["patientID"] as? String ?? ""
-                    // let testTypeString = data["testType"] as? String ?? ""
-                    //  let testType = Patient.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                     let statusString = data["status"] as? String ?? ""
                     let status = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
-                    //**
                     let testTypeString = data["testType"] as? String ?? ""
-                    //let testType           = Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                     let testType = Test.TestType(testType: Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .seciniz)
                     let sampleTypeString = data["sampleType"] as? String ?? ""
                     let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
-                    
-                    //**
                     
                     // Patient bilgilerini Firestore'dan al
                     let patientRef = db.collection("Patients").document(patientID)
@@ -134,14 +115,12 @@ class TestDataManager: ObservableObject {
                             print(error?.localizedDescription ?? "Error fetching patient")
                             return
                         }
-                        
+
                         let patientName = patientData["name"] as? String ?? ""
                         let patientGenderString = patientData["gender"] as? String ?? ""
                         let patientGender = Patient.General.Gender(rawValue: patientGenderString) ?? .Erkek
                         let patientBirthdate = (patientData["birthdate"] as? Timestamp)?.dateValue() ?? Date()
                         let patientTcNo = patientData["tcNo"] as? String ?? ""
-                        //  let statusString    = data["status"] as? String ?? ""
-                        // let status           = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
                         
                         let patient = Patient(
                             id: UUID(),
@@ -156,11 +135,9 @@ class TestDataManager: ObservableObject {
                                 phoneNumber: patientData["phoneNumber"] as? String ?? "",
                                 email: patientData["email"] as? String ?? ""
                             ),
-                            //   testType: Patient.TestType(testType: testType),
                             emergency: Patient.Emergency(
                                 isEmergency: patientData["isEmergency"] as? Bool ?? false,
                                 notes: patientData["notes"] as? String ?? ""
-                                //      status: Test.Status(status: status)
                             )
                         )
                         
@@ -210,8 +187,6 @@ class TestDataManager: ObservableObject {
                     let sampleTypeString = data["sampleType"] as? String ?? ""
                     let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
                     
-                    //**
-                    
                     // Patient bilgilerini Firestore'dan al
                     let patientRef = db.collection("Patients").document(patientID)
                     patientRef.getDocument { (patientDocument, error) in
@@ -225,8 +200,6 @@ class TestDataManager: ObservableObject {
                         let patientGender = Patient.General.Gender(rawValue: patientGenderString) ?? .Erkek
                         let patientBirthdate = (patientData["birthdate"] as? Timestamp)?.dateValue() ?? Date()
                         let patientTcNo = patientData["tcNo"] as? String ?? ""
-                        //  let statusString    = data["status"] as? String ?? ""
-                        // let status           = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
                         
                         let patient = Patient(
                             id: UUID(),
@@ -241,11 +214,9 @@ class TestDataManager: ObservableObject {
                                 phoneNumber: patientData["phoneNumber"] as? String ?? "",
                                 email: patientData["email"] as? String ?? ""
                             ),
-                            //   testType: Patient.TestType(testType: testType),
                             emergency: Patient.Emergency(
                                 isEmergency: patientData["isEmergency"] as? Bool ?? false,
                                 notes: patientData["notes"] as? String ?? ""
-                                //      status: Test.Status(status: status)
                             )
                         )
                         
@@ -258,9 +229,6 @@ class TestDataManager: ObservableObject {
                             //testType: Test.TestType(testType: testType)
                             testType: testType,
                             sampleType: sampleType
-                            
-                           
-                            
                         )
                         
                         DispatchQueue.main.async {
@@ -297,9 +265,7 @@ class TestDataManager: ObservableObject {
                     let testType = Test.TestType(testType: Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .seciniz)
                     let sampleTypeString = data["sampleType"] as? String ?? ""
                     let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
-                    
-                    //**
-                    
+
                     // Patient bilgilerini Firestore'dan al
                     let patientRef = db.collection("Patients").document(patientID)
                     patientRef.getDocument { (patientDocument, error) in
@@ -313,8 +279,6 @@ class TestDataManager: ObservableObject {
                         let patientGender = Patient.General.Gender(rawValue: patientGenderString) ?? .Erkek
                         let patientBirthdate = (patientData["birthdate"] as? Timestamp)?.dateValue() ?? Date()
                         let patientTcNo = patientData["tcNo"] as? String ?? ""
-                        //  let statusString    = data["status"] as? String ?? ""
-                        // let status           = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
                         
                         let patient = Patient(
                             id: UUID(),
@@ -336,7 +300,6 @@ class TestDataManager: ObservableObject {
                                 //      status: Test.Status(status: status)
                             )
                         )
-                        
                         let test = Test(
                             id: UUID(),
                             documentID: documentID,
@@ -359,9 +322,7 @@ class TestDataManager: ObservableObject {
             }
         }
     }
-    
-    
-    
+
     func fetchReportsWaiting() {
         tests.removeAll()
         let db = Firestore.firestore()
@@ -377,19 +338,13 @@ class TestDataManager: ObservableObject {
                     let data = document.data()
                     let documentID = document.documentID
                     let patientID = data["patientID"] as? String ?? ""
-                    // let testTypeString = data["testType"] as? String ?? ""
-                    //  let testType = Patient.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                     let statusString = data["status"] as? String ?? ""
                     let status = Test.Status(status: Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor)
-                    //**
                     let testTypeString = data["testType"] as? String ?? ""
-                    //let testType           = Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                     let testType = Test.TestType(testType: Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .seciniz)
                     let sampleTypeString = data["sampleType"] as? String ?? ""
                     let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
-                    
-                    //**
-                    
+
                     // Patient bilgilerini Firestore'dan al
                     let patientRef = db.collection("Patients").document(patientID)
                     patientRef.getDocument { (patientDocument, error) in
@@ -436,11 +391,7 @@ class TestDataManager: ObservableObject {
                             //testType: Test.TestType(testType: testType)
                             testType: testType,
                             sampleType: sampleType
-                            
-                           
-                            
                         )
-                        
                         DispatchQueue.main.async {
                             self.tests.append(test)
                         }
@@ -449,10 +400,7 @@ class TestDataManager: ObservableObject {
             }
         }
     }
-    
-    
-    
-    
+      
     func fetchReported() {
         tests.removeAll()
         let db = Firestore.firestore()
@@ -468,18 +416,24 @@ class TestDataManager: ObservableObject {
                     let data = document.data()
                     let documentID = document.documentID
                     let patientID = data["patientID"] as? String ?? ""
-                    // let testTypeString = data["testType"] as? String ?? ""
-                    //  let testType = Patient.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                     let statusString = data["status"] as? String ?? ""
                     let status = Test.Status(status: Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor)
-                    //**
                     let testTypeString = data["testType"] as? String ?? ""
-                    //let testType           = Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                     let testType = Test.TestType(testType: Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .seciniz)
                     let sampleTypeString = data["sampleType"] as? String ?? ""
                     let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
                     
-                    //**
+                    // Parameters
+                    let parameters = data["parameters"] as? [String: String] ?? [:]
+                    
+                    // Analysis
+                    let analysis = data["analysis"] as? String ?? nil
+                    
+                    // Report
+                    let report = data["report"] as? String ?? nil
+                    
+                    // Consultancy
+                    let consultancy = data["consultancy"] as? Bool ?? false
                     
                     // Patient bilgilerini Firestore'dan al
                     let patientRef = db.collection("Patients").document(patientID)
@@ -488,14 +442,11 @@ class TestDataManager: ObservableObject {
                             print(error?.localizedDescription ?? "Error fetching patient")
                             return
                         }
-                        
                         let patientName = patientData["name"] as? String ?? ""
                         let patientGenderString = patientData["gender"] as? String ?? ""
                         let patientGender = Patient.General.Gender(rawValue: patientGenderString) ?? .Erkek
                         let patientBirthdate = (patientData["birthdate"] as? Timestamp)?.dateValue() ?? Date()
                         let patientTcNo = patientData["tcNo"] as? String ?? ""
-                        //  let statusString    = data["status"] as? String ?? ""
-                        // let status           = Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor
                         
                         let patient = Patient(
                             id: UUID(),
@@ -510,11 +461,9 @@ class TestDataManager: ObservableObject {
                                 phoneNumber: patientData["phoneNumber"] as? String ?? "",
                                 email: patientData["email"] as? String ?? ""
                             ),
-                            //   testType: Patient.TestType(testType: testType),
                             emergency: Patient.Emergency(
                                 isEmergency: patientData["isEmergency"] as? Bool ?? false,
                                 notes: patientData["notes"] as? String ?? ""
-                                //      status: Test.Status(status: status)
                             )
                         )
                         
@@ -522,16 +471,14 @@ class TestDataManager: ObservableObject {
                             id: UUID(),
                             documentID: documentID,
                             patient: patient,
-                           // status: Test.Status(status: status),
                             status: status,
-                            //testType: Test.TestType(testType: testType)
                             testType: testType,
-                            sampleType: sampleType
-                            
-                           
-                            
+                            sampleType: sampleType,
+                            parameters: parameters,
+                            analysis: analysis,
+                            report: report,
+                            consultancy: consultancy
                         )
-                        
                         DispatchQueue.main.async {
                             self.tests.append(test)
                         }
@@ -540,10 +487,8 @@ class TestDataManager: ObservableObject {
             }
         }
     }
-        
-        //******
-    
-    
+
+
     func updateTest(_ test: Test) {
             guard let documentID = test.documentID else {
                 print("Document ID is nil")
@@ -572,14 +517,7 @@ class TestDataManager: ObservableObject {
             }
         }
     
-    
-    
-        
-        
 
-    
-    
-    
     func addTest(_ test: Test) {
         let db = Firestore.firestore()
         let data: [String: Any] = [    //Bu datayı var ile alıyordum ide uyarısıyla let yaptım. Çökerse bak buraya
@@ -630,12 +568,6 @@ class TestDataManager: ObservableObject {
         }
     }
     
-    
-    
-    
-    
- //**************************
- //**************************
  //LABARATUAR DA KULLANILIYOR PARAMETRELER BURADA EKLENİYOR MAP OLARAK.
     func saveTestResults(test: Test, parameterValues: [String: String]) {
             let db = Firestore.firestore()
@@ -662,12 +594,7 @@ class TestDataManager: ObservableObject {
             }
         }
     
-    
-    
-    
-    
-    
-    
+
     //ANALİZ KAYDETME
     func saveAnalysis(for test: Test, analysis: String) {
             let db = Firestore.firestore()
@@ -685,7 +612,6 @@ class TestDataManager: ObservableObject {
             }
         }
     
-    
     //RAPOR KAYDETME
     func saveReport(for test: Test, report: String) {
             let db = Firestore.firestore()
@@ -702,15 +628,35 @@ class TestDataManager: ObservableObject {
                 }
             }
         }
-    
+     
+    func saveExpertOpinion(for test: Test, selectedStatus: String, consultancy: Bool) {
+            let db = Firestore.firestore()
+            let testRef = db.collection("Tests").document(test.documentID ?? "")
+            
+            var updatedData: [String: Any] = [
+                "status": selectedStatus == "Onayla" ? "Uzman Onayından Geçti" : "Uzman Tarafından Reddedildi",
+                "report": selectedStatus == "Reddet" ? "Yeniden Raporlanacak" : (test.report ?? "")
+            ]
+            
+            if selectedStatus == "Onayla" {
+                updatedData["consultancy"] = consultancy
+            }
+            
+            testRef.updateData(updatedData) { error in
+                if let error = error {
+                    print("Error updating document: \(error)")
+                } else {
+                    print("Document successfully updated")
+                    // Local data update
+                    if let index = self.tests.firstIndex(where: { $0.documentID == test.documentID }) {
+                        self.tests[index].status = Test.Status(status: selectedStatus == "Onayla" ? .onaylandi : .uzamanReddi)
+                        self.tests[index].report = selectedStatus == "Reddet" ? "Yeniden Raporlanacak" : self.tests[index].report
+                        self.tests[index].consultancy = selectedStatus == "Onayla" ? consultancy : nil
+                    }
+                }
+            }
+        }
 
-    
-    
-    
-    
-    
- 
- 
         func deleteTest(_ test: Test) {
             guard let documentID = test.documentID else {
                 print("Document ID is nil")

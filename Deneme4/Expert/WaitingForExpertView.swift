@@ -1,16 +1,22 @@
 //
-//  ReportedView.swift
+//  WaitingForExpert.swift
 //  Deneme4
 //
-//  Created by Eren on 14.06.2024.
+//  Created by Eren on 15.06.2024.
+//
+
+//
+//  WaitingForExpert.swift
+//  Deneme4
+//
+//  Created by Eren on 15.06.2024.
 //
 
 import SwiftUI
 
-struct ReportedView: View {
+struct WaitingForExpertView: View {
+    @EnvironmentObject var dataManager: TestDataManager
     @StateObject private var viewModel = ReportedViewModel()
-    @StateObject private var dm = TestDataManager()
-
     @State private var searchText = ""
 
     var filteredTests: [Test] {
@@ -26,7 +32,8 @@ struct ReportedView: View {
         NavigationView {
             List {
                 ForEach(filteredTests) { test in
-                    NavigationLink(destination: AddReportsView(test: test, dataManager: dm)) {
+                    let testResultsViewModel = TestResultsViewModel(test: test, dataManager: dataManager)
+                    NavigationLink(destination: AddExpertOpinionView(test: test, testResultsViewModel: testResultsViewModel).environmentObject(dataManager)) {
                         VStack(alignment: .leading) {
                             Text(test.patient.general.name)
                                 .font(.headline)
@@ -42,13 +49,13 @@ struct ReportedView: View {
             }
             .navigationTitle("Raporlananlar")
             .searchable(text: $searchText)
-            
         }
     }
 }
 
-struct ReportedView_Previews: PreviewProvider {
+struct WaitingForExpertView_Previews: PreviewProvider {
     static var previews: some View {
-        ReportedView()
+        WaitingForExpertView()
+            .environmentObject(TestDataManager())
     }
 }

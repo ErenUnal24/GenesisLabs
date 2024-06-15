@@ -21,9 +21,11 @@ struct Test: Identifiable, Codable {
     
     var parameters: [String: String] = [:] //yeni ekledim
     
-    var analysis: String?
+    var analysis: String? = nil
     
-    var report : String?
+    var report : String? = nil
+    
+    var consultancy: Bool? = nil
     
 }
 
@@ -96,6 +98,8 @@ extension Test.Status {
         case analizBekliyor  = "Analiz Bekliyor"
         case raporBekliyor   = "Rapor Bekliyor"
         case raporlandi      = "Rapor Oluştu"
+        case uzamanReddi     = "Uzman Tarafından Reddedildi"
+        case onaylandi       = "Uzman Onayından Geçti"
     }
 }
 

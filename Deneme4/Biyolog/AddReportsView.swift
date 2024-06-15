@@ -14,14 +14,14 @@ struct AddReportsView: View {
     @StateObject private var dm: TestDataManager
     
     var onAddAnalysis: (String) -> Void
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationModedfhgfh
 
     @State private var reportText: String = ""
     @State private var isPickerVisible: Bool = false
     @State private var selectedOption: String = ""
     
-    @State private var pdfData: Data? = nil // Oluşturulan PDF verisini saklar
-    
+//    @State private var pdfData: Data? = nil // Oluşturulan PDF verisini saklar
+//    @State private var uploadedPDFURL: URL? = nil // Firebase'e yüklenen PDF'in URL'sini saklar
 
     init(test: Test, dataManager: TestDataManager) {
         self._testResultsViewModel = ObservedObject(wrappedValue: TestResultsViewModel(test: test, dataManager: dataManager))
@@ -57,10 +57,20 @@ struct AddReportsView: View {
                 Button("Kaydet") {
                     dm.saveReport(for: testResultsViewModel.test, report: reportText)
                     
-                    generatePDF() // Rapor kaydedildiğinde PDF oluştur
+//                    generatePDF() // Rapor kaydedildiğinde PDF oluştur
+//                    if let data = pdfData {
+//                        uploadPDF(data: data, for: testResultsViewModel.test) { url, error in
+//                            if let error = error {
+//                                print("PDF yükleme hatası: \(error)")
+//                            } else if let url = url {
+//                                print("PDF başarıyla yüklendi: \(url)")
+//                                self.uploadedPDFURL = url
+//                            }
+//                        }
+//                    }
                     
                     onAddAnalysis(reportText)
-                    presentationMode.wrappedValue.dismiss()
+                    // presentationMode.wrappedValue.dismiss()
                 }
                 .padding()
                 .foregroundColor(.white)
@@ -68,40 +78,61 @@ struct AddReportsView: View {
                 .cornerRadius(10)
                 .padding()
                 
-                if let pdfData = pdfData {
-                    Button("PDF Görüntüle") {
-                        displayPDF(from: pdfData)
-                    }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                    .padding()
-                }
+//                if let uploadedPDFURL = uploadedPDFURL {
+//                    Button("PDF Görüntüle") {
+//                        displayPDF(from: uploadedPDFURL)
+//                    }
+//                    .padding()
+//                    .foregroundColor(.white)
+//                    .background(Color.blue)
+//                    .cornerRadius(10)
+//                    .padding()
+//                }
+//                
+//                NavigationLink(destination: /*ReportsView()*/ ReportedView()) {
+//                    Text("Raporları Görüntüle")
+//                        .padding()
+//                        .foregroundColor(.white)
+//                        .background(Color.green)
+//                        .cornerRadius(10)
+//                        .padding()
+//                }
             }
             .navigationBarItems(trailing:
                 Button("Kapat") {
-                    presentationMode.wrappedValue.dismiss()
+                    //presentationMode.wrappedValue.dismiss()
                 }
             )
             .navigationTitle("Rapor Ekleme")
         }
     }
 
-    private func generatePDF() {
-        pdfData = createPDF(for: testResultsViewModel.test)
-    }
-
-    private func displayPDF(from data: Data) {
-        let pdfDocument = PDFDocument(data: data)
-        let pdfView = PDFView()
-        pdfView.document = pdfDocument
-        
-        let pdfViewController = UIViewController()
-        pdfViewController.view = pdfView
-        
-        UIApplication.shared.windows.first?.rootViewController?.present(pdfViewController, animated: true, completion: nil)
-    }
+//    private func generatePDF() {
+//        pdfData = createPDF(for: testResultsViewModel.test)
+//        if let data = pdfData {
+//            uploadPDF(data: data, for: testResultsViewModel.test) { url, error in
+//                if let error = error {
+//                    print("PDF yükleme hatası: \(error)")
+//                } else if let url = url {
+//                    self.uploadedPDFURL = url
+//                    print("PDF başarıyla yüklendi: \(url)")
+//                }
+//            }
+//        }
+//    }
+//
+//    private func displayPDF(from url: URL) {
+//        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
+//            return
+//        }
+//        let pdfViewController = UIViewController()
+//        let pdfView = PDFView(frame: pdfViewController.view.bounds)
+//        pdfView.document = PDFDocument(url: url)
+//        pdfViewController.view.addSubview(pdfView)
+//        rootViewController.present(pdfViewController, animated: true, completion: nil)
+//    }
+    
+    
 }
 
 struct AddReportsView_Previews: PreviewProvider {
@@ -132,9 +163,6 @@ struct AddReportsView_Previews: PreviewProvider {
             sampleType: Test.SampleType(sampleType: .seciniz)
         )
         
-        let viewModel = TestResultsViewModel(test: test, dataManager: TestDataManager())
-        
         return AddReportsView(test: test, dataManager: TestDataManager())
     }
 }
-

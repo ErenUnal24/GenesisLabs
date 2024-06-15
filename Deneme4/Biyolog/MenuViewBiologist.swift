@@ -33,6 +33,17 @@ struct MenuViewBiologist: View {
                 }
                 .padding(.vertical)
                 
+                NavigationLink(destination: ReportedView()) {
+                VStack(alignment: .leading) {
+                    MenuRow(icon: "flask.fill", title: "Yeniden Raporlanacak")
+                        .padding(.vertical)
+                    
+                    Text("Uzman Tarafından Reddedildi. Revize Gerekli.")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                }
+            }
+                
                 
    
             }

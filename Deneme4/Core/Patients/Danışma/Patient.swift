@@ -12,16 +12,11 @@ struct Patient: Identifiable, Codable {
     let documentID: String?
     var general: General
     var contact: Contact
-   // var testType: TestType
+ 
     var emergency: Emergency
     
    
 }
-
-
-
-
-
 
 
 extension Patient {
@@ -57,29 +52,7 @@ extension Patient {
 }
 
 
-/*
-extension Patient {
-    struct TestType: Codable {
-        var testType: TestTypeEnum
-        
-    }
-}
 
-extension Patient.TestType {
-    enum TestTypeEnum: String, Identifiable, CaseIterable, Codable {
-        var id: Self { self }
-        case ces = "Klinik Ekzom Dizileme"
-        case tekgen  = "Tek Gen Dizi Analizi"
-        case cftr = "CFTR Dizi Analizi"
-        case smn1 = "SMN1-2 Delesyon Duplikasyon Analizi"
-        case kalıtsalkanser = "Kalıtsal Kanser Paneli"
-        case hiperamoni = "Hiperamonemi Gen Paneli"
-
-
-    }
-}
-
-*/
 
 extension Patient {
     static var emptyPatient: Patient {
@@ -94,9 +67,8 @@ extension Patient {
         let emergency = Patient.Emergency(isEmergency: false,
                                                 notes: "")
         
-   //     let testType = Patient.TestType(testType: Patient.TestType.TestTypeEnum.allCases.first!)
         
-        return Patient(id: UUID(), documentID: nil, general: general, contact: contact,/* testType: testType,*/ emergency: emergency)
+        return Patient(id: UUID(), documentID: nil, general: general, contact: contact, emergency: emergency)
       
     }
 }

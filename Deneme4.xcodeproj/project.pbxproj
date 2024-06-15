@@ -15,6 +15,14 @@
 		7B2D76772C0CEE3F000914A4 /* PatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D76762C0CEE3F000914A4 /* PatientViewModel.swift */; };
 		7B372AED2C136D4000D07750 /* MenuViewSampleAccept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B372AEC2C136D4000D07750 /* MenuViewSampleAccept.swift */; };
 		7B372AEF2C137D3900D07750 /* PatientViewForSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B372AEE2C137D3900D07750 /* PatientViewForSample.swift */; };
+		7B579D982C1DB49B0005C9B4 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579D972C1DB49B0005C9B4 /* ReportsViewModel.swift */; };
+		7B579D9A2C1DB4BF0005C9B4 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579D992C1DB4BF0005C9B4 /* ReportsView.swift */; };
+		7B579D9C2C1DDAE00005C9B4 /* ReportPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579D9B2C1DDAE00005C9B4 /* ReportPDFView.swift */; };
+		7B579D9F2C1DF1910005C9B4 /* MenuViewExpert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579D9E2C1DF1910005C9B4 /* MenuViewExpert.swift */; };
+		7B579DA12C1DF4800005C9B4 /* WaitingForExpertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DA02C1DF4800005C9B4 /* WaitingForExpertView.swift */; };
+		7B579DA32C1DF4AD0005C9B4 /* ExpertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DA22C1DF4AD0005C9B4 /* ExpertViewModel.swift */; };
+		7B579DA52C1DF8390005C9B4 /* AddExpertOpinonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DA42C1DF8390005C9B4 /* AddExpertOpinonView.swift */; };
+		7B579DA72C1E4D600005C9B4 /* PDFListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DA62C1E4D600005C9B4 /* PDFListView.swift */; };
 		7BD53D5B2C0212E600B52563 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD53D5A2C0212E600B52563 /* MenuView.swift */; };
 		7BD53D622C021F5000B52563 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD53D612C021F5000B52563 /* SearchBar.swift */; };
 		7BE198AF2C17B632007BC856 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198AE2C17B632007BC856 /* Users.swift */; };
@@ -100,6 +108,14 @@
 		7B2D76762C0CEE3F000914A4 /* PatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewModel.swift; sourceTree = "<group>"; };
 		7B372AEC2C136D4000D07750 /* MenuViewSampleAccept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewSampleAccept.swift; sourceTree = "<group>"; };
 		7B372AEE2C137D3900D07750 /* PatientViewForSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewForSample.swift; sourceTree = "<group>"; };
+		7B579D972C1DB49B0005C9B4 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
+		7B579D992C1DB4BF0005C9B4 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		7B579D9B2C1DDAE00005C9B4 /* ReportPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPDFView.swift; sourceTree = "<group>"; };
+		7B579D9E2C1DF1910005C9B4 /* MenuViewExpert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewExpert.swift; sourceTree = "<group>"; };
+		7B579DA02C1DF4800005C9B4 /* WaitingForExpertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForExpertView.swift; sourceTree = "<group>"; };
+		7B579DA22C1DF4AD0005C9B4 /* ExpertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertViewModel.swift; sourceTree = "<group>"; };
+		7B579DA42C1DF8390005C9B4 /* AddExpertOpinonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpertOpinonView.swift; sourceTree = "<group>"; };
+		7B579DA62C1E4D600005C9B4 /* PDFListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListView.swift; sourceTree = "<group>"; };
 		7BD53D5A2C0212E600B52563 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		7BD53D612C021F5000B52563 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		7BE198AE2C17B632007BC856 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
@@ -266,6 +282,28 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
+		7B579D942C1DB4610005C9B4 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				7B579D972C1DB49B0005C9B4 /* ReportsViewModel.swift */,
+				7B579D992C1DB4BF0005C9B4 /* ReportsView.swift */,
+				7B579D9B2C1DDAE00005C9B4 /* ReportPDFView.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		7B579D9D2C1DF1610005C9B4 /* Expert */ = {
+			isa = PBXGroup;
+			children = (
+				7B579D9E2C1DF1910005C9B4 /* MenuViewExpert.swift */,
+				7B579DA02C1DF4800005C9B4 /* WaitingForExpertView.swift */,
+				7B579DA22C1DF4AD0005C9B4 /* ExpertViewModel.swift */,
+				7B579DA42C1DF8390005C9B4 /* AddExpertOpinonView.swift */,
+				7B579DA62C1E4D600005C9B4 /* PDFListView.swift */,
+			);
+			path = Expert;
+			sourceTree = "<group>";
+		};
 		7BD53D4E2C01F7E800B52563 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +368,8 @@
 				7BE8E5E72BFE4E7600B2E25B /* Deneme4App.swift */,
 				7BE8E5E92BFE4E7600B2E25B /* ContentView.swift */,
 				7BE198EF2C1BC493007BC856 /* PDFKit */,
+				7B579D942C1DB4610005C9B4 /* Reports */,
+				7B579D9D2C1DF1610005C9B4 /* Expert */,
 				7B372AF32C138F1C00D07750 /* Biyolog */,
 				7B372AF22C138EF600D07750 /* Laboratuvar */,
 				7B372AEB2C136CC800D07750 /* NumuneKabul */,
@@ -547,14 +587,18 @@
 				7BE198DC2C1B24CD007BC856 /* MenuViewBiologist.swift in Sources */,
 				7BE198D62C1B0D71007BC856 /* ResultAcceptedView.swift in Sources */,
 				7BE198C42C188414007BC856 /* SampleWaitingView.swift in Sources */,
+				7B579DA52C1DF8390005C9B4 /* AddExpertOpinonView.swift in Sources */,
 				7BD53D5B2C0212E600B52563 /* MenuView.swift in Sources */,
 				7BE198C62C18A8CE007BC856 /* SampleAcceptedView.swift in Sources */,
 				7BE198F72C1BC75C007BC856 /* ReportedViewModel.swift in Sources */,
+				7B579D9A2C1DB4BF0005C9B4 /* ReportsView.swift in Sources */,
 				7BE8E5EA2BFE4E7600B2E25B /* ContentView.swift in Sources */,
 				7BE8E5E82BFE4E7600B2E25B /* Deneme4App.swift in Sources */,
 				7BE198EA2C1BB59A007BC856 /* ReportWaitingViewModel.swift in Sources */,
+				7B579D9F2C1DF1910005C9B4 /* MenuViewExpert.swift in Sources */,
 				7B2D76732C0CC35B000914A4 /* AddPatientViewModel.swift in Sources */,
 				7BE198CC2C18B00C007BC856 /* StatusUpdateView.swift in Sources */,
+				7B579DA72C1E4D600005C9B4 /* PDFListView.swift in Sources */,
 				7BEB40832C10301C0068E3E2 /* DataManager.swift in Sources */,
 				7BE198CE2C18D8CD007BC856 /* MenuViewLab.swift in Sources */,
 				7BE198D02C1A2C9C007BC856 /* ResultWaitingView.swift in Sources */,
@@ -575,9 +619,12 @@
 				7BE198F52C1BC698007BC856 /* ReportedView.swift in Sources */,
 				7BE198CA2C18AE72007BC856 /* UpdateTestViewModel.swift in Sources */,
 				7BE198F12C1BC4B6007BC856 /* Pdf.swift in Sources */,
+				7B579DA12C1DF4800005C9B4 /* WaitingForExpertView.swift in Sources */,
 				7B2D76712C0CB893000914A4 /* Patient.swift in Sources */,
 				7B2D766F2C0CAC2E000914A4 /* AddPatientView.swift in Sources */,
+				7B579DA32C1DF4AD0005C9B4 /* ExpertViewModel.swift in Sources */,
 				7BE198B52C17BDEB007BC856 /* AddUserView.swift in Sources */,
+				7B579D9C2C1DDAE00005C9B4 /* ReportPDFView.swift in Sources */,
 				7BEB40852C10CA200068E3E2 /* PatientEditView.swift in Sources */,
 				7BE198E62C1BA76E007BC856 /* AddAnalysisSheet.swift in Sources */,
 				7BE198BD2C17CBA3007BC856 /* TestViewModel.swift in Sources */,
@@ -585,6 +632,7 @@
 				7BE198D22C1A2E08007BC856 /* AddResultsView.swift in Sources */,
 				7BE8E62A2BFE5DAB00B2E25B /* AuthenticationManager.swift in Sources */,
 				7BE8E6282BFE5B0300B2E25B /* SignInEmailView.swift in Sources */,
+				7B579D982C1DB49B0005C9B4 /* ReportsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
