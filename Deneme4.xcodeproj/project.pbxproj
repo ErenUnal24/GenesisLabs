@@ -41,6 +41,7 @@
 		7B579DDE2C2257880005C9B4 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DDD2C2257880005C9B4 /* Color+Extension.swift */; };
 		7B579DE02C22E06F0005C9B4 /* LastListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DDF2C22E06F0005C9B4 /* LastListView.swift */; };
 		7B579DE22C22E18D0005C9B4 /* LastListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DE12C22E18D0005C9B4 /* LastListViewModel.swift */; };
+		7B579DE52C2320860005C9B4 /* GetNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DE42C2320860005C9B4 /* GetNavigationView.swift */; };
 		7BD53D5B2C0212E600B52563 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD53D5A2C0212E600B52563 /* MenuView.swift */; };
 		7BD53D622C021F5000B52563 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD53D612C021F5000B52563 /* SearchBar.swift */; };
 		7BE198AF2C17B632007BC856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198AE2C17B632007BC856 /* User.swift */; };
@@ -152,6 +153,7 @@
 		7B579DDD2C2257880005C9B4 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		7B579DDF2C22E06F0005C9B4 /* LastListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastListView.swift; sourceTree = "<group>"; };
 		7B579DE12C22E18D0005C9B4 /* LastListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastListViewModel.swift; sourceTree = "<group>"; };
+		7B579DE42C2320860005C9B4 /* GetNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNavigationView.swift; sourceTree = "<group>"; };
 		7BD53D5A2C0212E600B52563 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		7BD53D612C021F5000B52563 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		7BE198AE2C17B632007BC856 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -359,6 +361,14 @@
 			path = Admin;
 			sourceTree = "<group>";
 		};
+		7B579DE32C23205B0005C9B4 /* Navigasyon */ = {
+			isa = PBXGroup;
+			children = (
+				7B579DE42C2320860005C9B4 /* GetNavigationView.swift */,
+			);
+			path = Navigasyon;
+			sourceTree = "<group>";
+		};
 		7BD53D4E2C01F7E800B52563 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +431,7 @@
 		7BE8E5E62BFE4E7600B2E25B /* Deneme4 */ = {
 			isa = PBXGroup;
 			children = (
+				7B579DE32C23205B0005C9B4 /* Navigasyon */,
 				7BE8E5E72BFE4E7600B2E25B /* Deneme4App.swift */,
 				7BE8E5E92BFE4E7600B2E25B /* ContentView.swift */,
 				7BE198EF2C1BC493007BC856 /* PDFKit */,
@@ -578,8 +589,8 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = 7BE8E5DB2BFE4E7600B2E25B;
 			packageReferences = (
@@ -650,6 +661,7 @@
 				7B579DC32C20B79B0005C9B4 /* UpdatePasswordView.swift in Sources */,
 				7BD53D5B2C0212E600B52563 /* MenuView.swift in Sources */,
 				7BE198C62C18A8CE007BC856 /* SampleAcceptedView.swift in Sources */,
+				7B579DE52C2320860005C9B4 /* GetNavigationView.swift in Sources */,
 				7B579DD42C221BD10005C9B4 /* AdminView.swift in Sources */,
 				7BE198F72C1BC75C007BC856 /* ReportedViewModel.swift in Sources */,
 				7B579DB42C2049E70005C9B4 /* RejectedViewModel.swift in Sources */,
@@ -871,6 +883,7 @@
 				DEVELOPMENT_TEAM = R856AKRHUX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Show the user location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -900,6 +913,7 @@
 				DEVELOPMENT_TEAM = R856AKRHUX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Show the user location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

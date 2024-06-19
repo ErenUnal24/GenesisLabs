@@ -17,57 +17,83 @@ struct PatientPDFsView: View {
     @State private var selectedPDFURL: URL?
 
     var body: some View {
-        VStack {
-            if let selectedPDFURL = selectedPDFURL {
-                PDFKitView(url: selectedPDFURL)
-                    .edgesIgnoringSafeArea(.all)
+        List {
+            // PDF Dosyaları
+            Group {
                 
-                Button(action: {
-                    sharePDF(url: selectedPDFURL)
-                }) {
-                    Text("PDF'yi Paylaş")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Adı: \(patient.general.name)")
+                        .font(.headline)
+                    Text("TC Kimlik No: \(patient.general.tcNo)")
+                    Text("Telefon Numarası: \(patient.contact.phoneNumber)")
+                    Text("Cinsiyeti: \(patient.general.gender.rawValue)")
+                    Text("Doğum Tarihi: \(formattedDate(patient.general.birthdate))")
+                    
+                    if patient.emergency.isEmergency {
+                        Text("Acil Durum Kişisi: \(patient.emergency.emergencyName)")
+                        Text("Acil Durum Numarası: \(patient.emergency.emergencyNo)")
+                    }
                 }
                 .padding()
                 
-
-            } else {
-                Text("PDF yükleniyor...")
-                    .onAppear {
-                        fetchPDFFileNamesForPatient(patient) { fileNames, error in
-                            if let fileNames = fileNames {
-                                self.pdfFileNames = fileNames
-                                if let firstFileName = fileNames.first {
-                                    fetchPDFURL(fileName: firstFileName) { url, error in
-                                        if let url = url {
-                                            self.selectedPDFURL = url
-                                        }
-                                    }
-                                }
-                            } else {
-                                print("PDF yüklenirken hata oluştu: \(error?.localizedDescription ?? "Bilinmeyen hata")")
+                
+                
+                Text("PDF Dosyaları:")
+                    .font(.headline)
+                
+                ForEach(pdfFileNames, id: \.self) { fileName in
+                    Button(action: {
+                        fetchPDFURL(fileName: fileName) { url, error in
+                            if let url = url {
+                                self.selectedPDFURL = url
                             }
                         }
+                    }) {
+                        Text(fileName)
                     }
+                }
             }
-
-            List(pdfFileNames, id: \.self) { fileName in
-                Button(action: {
-                    fetchPDFURL(fileName: fileName) { url, error in
-                        if let url = url {
-                            self.selectedPDFURL = url
-                        }
+            .padding(.bottom, 20)
+            
+            // PDF Görünümü
+            if let selectedPDFURL = selectedPDFURL {
+                VStack {
+                    PDFKitView(url: selectedPDFURL)
+                        .frame(height: 300)
+                        .padding(.top, 10)
+                    
+                    Button(action: {
+                        sharePDF(url: selectedPDFURL)
+                    }) {
+                        Text("PDF'yi Paylaş")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                     }
-                }) {
-                    Text(fileName)
+                    .padding(.bottom, 10)
                 }
             }
         }
-        .navigationTitle(patient.general.name)
+        .navigationTitle("Hasta Bilgileri")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            fetchPDFFileNamesForPatient(patient) { fileNames, error in
+                if let fileNames = fileNames {
+                    self.pdfFileNames = fileNames
+                    if let firstFileName = fileNames.first {
+                        fetchPDFURL(fileName: firstFileName) { url, error in
+                            if let url = url {
+                                self.selectedPDFURL = url
+                            }
+                        }
+                    }
+                } else {
+                    print("PDF yüklenirken hata oluştu: \(error?.localizedDescription ?? "Bilinmeyen hata")")
+                }
+            }
+        }
     }
     
     private func fetchPDFURL(fileName: String, completion: @escaping (URL?, Error?) -> Void) {
@@ -81,20 +107,25 @@ struct PatientPDFsView: View {
     }
     
     private func sharePDF(url: URL) {
-        // Create a name to present to the user
         let fileName = "Report.pdf"
         
-        // Get PDF data from URL
         guard let pdfData = try? Data(contentsOf: url) else {
             print("Failed to get PDF data from URL")
             return
         }
         
-        // Create UIActivityViewController with name and PDF data
-        let activityViewController = UIActivityViewController(activityItems: [fileName, pdfData], applicationActivities: nil)
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
         
-        // Present activityViewController
-        UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
+        do {
+            try pdfData.write(to: tempURL)
+            let activityViewController = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
+            
+            if let topController = UIApplication.shared.windows.first?.rootViewController {
+                topController.present(activityViewController, animated: true, completion: nil)
+            }
+        } catch {
+            print("Failed to write PDF data to temporary URL: \(error.localizedDescription)")
+        }
     }
 }
 
@@ -112,4 +143,9 @@ struct PDFKitView: UIViewRepresentable {
     }
 }
 
+private func formattedDate(_ date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    return formatter.string(from: date)
+}
 

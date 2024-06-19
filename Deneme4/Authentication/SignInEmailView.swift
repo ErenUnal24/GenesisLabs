@@ -19,6 +19,8 @@ struct SignInEmailView: View {
     
     @Environment(\.dismiss) var dismiss
     
+    @State private var isGetNavigationViewActive = false
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.topColor, .centerColor, .bottomColor]),
@@ -28,7 +30,7 @@ struct SignInEmailView: View {
             
             VStack(spacing: 20) {
                 Spacer()
-                    .frame(height: 50)
+                    .frame(height: 10)
                 
                 VStack {
                     Image("logo")
@@ -109,12 +111,13 @@ struct SignInEmailView: View {
                         .shadow(radius: 5)
                 })
                 .sheet(isPresented: $showSheet, content: {
-                    SignInPatientView(showSignInView: $showSignInView, item: .emptyPatient)
+                    SignInPatientView(showSignInView: $showSignInView)
                 })
                 
                 Spacer()
                 
-                // WhatsApp
+                
+                //Whatsapp İletişin
                 HStack {
                     Image("wp")
                         .resizable()
@@ -124,15 +127,25 @@ struct SignInEmailView: View {
                         .foregroundColor(.gray)
                 }
                 
+                //Bize Ulaşın Butonu
+                Button(action: {
+                    isGetNavigationViewActive = true
+                }, label: {
+                    Image(systemName: "location.square.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        Text("Bize Ulaşın")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                })
+                .sheet(isPresented: $isGetNavigationViewActive, content: {
+                    GetNavigationView()
+                })
+                
                 Spacer()
                     .frame(height: 20)
             }
-            .padding(20)
-            .background(
-                NavigationLink(destination: destinationView(), isActive: $isUserSignedIn) {
-                    EmptyView()
-                }
-            )
+            .padding(5)
         }
         .navigationBarHidden(true) // Navigation Bar'ı gizle
         .background(
@@ -141,29 +154,6 @@ struct SignInEmailView: View {
                            endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
         )
-    }
-    
-    @ViewBuilder
-    private func destinationView() -> some View {
-        if let userType = viewModel.userType {
-            switch userType {
-            case .danisma:
-                MainTabView()
-            case .numuneKabul:
-                SampleTabView()
-            case .laborant:
-                LabTabView()
-            case .biyolog:
-                BiologTabView()
-            case .uzman:
-                ExpertTabView()
-            case .admin:
-                AdminView()
-            }
-        } else {
-            Text("Kullanıcı türü belirlenemedi.")
-                .foregroundColor(.red)
-        }
     }
 }
 
