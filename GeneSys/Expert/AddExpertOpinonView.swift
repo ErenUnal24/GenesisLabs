@@ -27,7 +27,7 @@ struct AddExpertOpinionView: View {
     var statusOptions = ["Seçiniz", "Onayla", "Reddet"]
 
     var body: some View {
-        NavigationView {
+        NavigationStack{
             Form {
                 Section(header: Text("Kişisel Bilgiler")) {
                     HStack {
@@ -132,7 +132,7 @@ struct AddExpertOpinionView: View {
                             if selectedStatus == "Onayla" {
                                                     generatePDF()
                                                 }
-                            //dismiss()
+                            dismiss()
                         },
                         secondaryButton: .cancel(Text("Hayır"))
                     )

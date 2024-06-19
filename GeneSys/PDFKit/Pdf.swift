@@ -32,69 +32,205 @@ func createPDF(for test: Test) -> Data {
     let data = renderer.pdfData { (context) in
         context.beginPage()
         
+//        // Logo Ekleme
+//        if let logo = UIImage(named: "logo.png") {
+//            let logoRect = CGRect(x: (pageRect.width - 100) / 2, y: 20, width: 100, height: 100)
+//            logo.draw(in: logoRect)
+//        }
+//        
+//        // Başlık Ekleme
+//        let title = "Genesis Genetik Labaratuvarı"
+//        let titleAttributes: [NSAttributedString.Key: Any] = [
+//            .font: UIFont.boldSystemFont(ofSize: 16)
+//        ]
+//        let titleSize = title.size(withAttributes: titleAttributes)
+//        let titleRect = CGRect(x: (pageRect.width - titleSize.width) / 2, y: 130, width: titleSize.width, height: titleSize.height)
+//        title.draw(in: titleRect, withAttributes: titleAttributes)
+//        
+//        // Hastanın Bilgileri
+//        let patientInfo = """
+//        Hasta Adı: \(test.patient.general.name)
+//        TC No: \(test.patient.general.tcNo)
+//        """
+//        let patientInfoAttributes: [NSAttributedString.Key: Any] = [
+//            .font: UIFont.systemFont(ofSize: 12)
+//        ]
+//        let patientInfoRect = CGRect(x: 20, y: 160, width: pageRect.width / 2 - 40, height: 40)
+//        patientInfo.draw(in: patientInfoRect, withAttributes: patientInfoAttributes)
+//        
+//        // Lab Adresi
+//        let labAddress = """
+//        Adres: 5. Levent Mahallesi, 34060 Eyüpsultan/İstanbul
+//        Telefon: +90 000 00 00
+//        """
+//        let labAddressAttributes: [NSAttributedString.Key: Any] = [
+//            .font: UIFont.systemFont(ofSize: 12)
+//        ]
+//        let labAddressRect = CGRect(x: pageRect.width / 2 + 20, y: 160, width: pageRect.width / 2 - 40, height: 40)
+//        labAddress.draw(in: labAddressRect, withAttributes: labAddressAttributes)
+//        
+//        // Test Türü
+//        let testType = "Test Türü: \(test.testType.testType.rawValue)"
+//        let testTypeAttributes: [NSAttributedString.Key: Any] = [
+//            .font: UIFont.boldSystemFont(ofSize: 14)
+//        ]
+//        let testTypeRect = CGRect(x: 20, y: 210, width: pageRect.width - 40, height: 20)
+//        testType.draw(in: testTypeRect, withAttributes: testTypeAttributes)
+//        
+//      
+//        // Report İçeriği
+//        let report = "Rapor: \(String(describing: test.report))"
+//        let reportAttributes: [NSAttributedString.Key: Any] = [
+//            .font: UIFont.systemFont(ofSize: 12)
+//        ]
+//        let reportRect = CGRect(x: 20, y: 240, width: pageRect.width - 40, height: pageRect.height - 260)
+//        report.draw(in: reportRect, withAttributes: reportAttributes)
+//        
+//        
+//        
+//        
+//        
+//        
+//    }
+//    
+//    return data
+//}
+        
         // Logo Ekleme
-        if let logo = UIImage(named: "logo.png") {
-            let logoRect = CGRect(x: (pageRect.width - 100) / 2, y: 20, width: 100, height: 100)
-            logo.draw(in: logoRect)
-        }
+                if let logo = UIImage(named: "logo.png") {
+                    let logoRect = CGRect(x: (pageRect.width - 100) / 2, y: 20, width: 100, height: 100)
+                    logo.draw(in: logoRect)
+                }
+                
+                // Başlık Ekleme
+                let title = "Genesis Genetik Laboratuvarı"
+                let titleAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.boldSystemFont(ofSize: 16)
+                ]
+                let titleSize = title.size(withAttributes: titleAttributes)
+                let titleRect = CGRect(x: (pageRect.width - titleSize.width) / 2, y: 130, width: titleSize.width, height: titleSize.height)
+                title.draw(in: titleRect, withAttributes: titleAttributes)
+                
+                // Hastanın Bilgileri
+                let patientInfo = """
+                Hasta Adı: \(test.patient.general.name)
+                TC No: \(test.patient.general.tcNo)
+                """
+                let patientInfoAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.systemFont(ofSize: 12)
+                ]
+                let patientInfoRect = CGRect(x: 20, y: 160, width: pageRect.width / 2 - 40, height: 40)
+                patientInfo.draw(in: patientInfoRect, withAttributes: patientInfoAttributes)
+                
+                // Lab Adresi
+                let labAddress = """
+                Adres: 5. Levent Mahallesi, 34060 Eyüpsultan/İstanbul
+                Telefon: +90 000 00 00
+                """
+                let labAddressAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.systemFont(ofSize: 12)
+                ]
+                let labAddressRect = CGRect(x: pageRect.width / 2 + 20, y: 160, width: pageRect.width / 2 - 40, height: 40)
+                labAddress.draw(in: labAddressRect, withAttributes: labAddressAttributes)
+                
+                // Test Türü
+                let testType = "Test Türü: \(test.testType.testType.rawValue)"
+                let testTypeAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.boldSystemFont(ofSize: 14)
+                ]
+                let testTypeRect = CGRect(x: 20, y: 210, width: pageRect.width - 40, height: 20)
+                testType.draw(in: testTypeRect, withAttributes: testTypeAttributes)
+                
+                // Sonuçlar Başlığı
+                let resultsTitle = "Sonuçlar:"
+                let resultsTitleAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.boldSystemFont(ofSize: 14)
+                ]
+                let resultsTitleRect = CGRect(x: 20, y: 240, width: pageRect.width - 40, height: 20)
+                resultsTitle.draw(in: resultsTitleRect, withAttributes: resultsTitleAttributes)
+                
+                // Sonuç Parametreleri
+                var yOffset = 260
+                    for (key, value) in test.parameters {
+                    let paramText = "\(key): \(value)"
+                    let paramAttributes: [NSAttributedString.Key: Any] = [
+                        .font: UIFont.systemFont(ofSize: 12)
+                    ]
+                    let paramRect = CGRect(x: 40, y: yOffset, width: Int(pageRect.width) - 80, height: 20)
+                    paramText.draw(in: paramRect, withAttributes: paramAttributes)
+                    yOffset += 20
+                }
+                
+                // Analiz Başlığı
+                let analysisTitle = "Analiz:"
+                let analysisTitleAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.boldSystemFont(ofSize: 14)
+                ]
+                let analysisTitleRect = CGRect(x: 20, y: 370/*pageRect.height - 220*/, width: pageRect.width - 40, height: 20)
+                analysisTitle.draw(in: analysisTitleRect, withAttributes: analysisTitleAttributes)
+                
+                // Analiz İçeriği
+                let analysisContent = "\(test.analysis ?? "")"
+                let analysisContentAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.systemFont(ofSize: 12)
+                ]
+                let analysisContentRect = CGRect(x: 40, y: 390/*pageRect.height - 200*/, width: pageRect.width - 80, height: 160)
+                analysisContent.draw(in: analysisContentRect, withAttributes: analysisContentAttributes)
+                
+                // Rapor Başlığı
+                let reportTitle = "Rapor:"
+                let reportTitleAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.boldSystemFont(ofSize: 14)
+                ]
+                let reportTitleRect = CGRect(x: 20, y: 410/*pageRect.height - 40*/, width: pageRect.width - 40, height: 20)
+                reportTitle.draw(in: reportTitleRect, withAttributes: reportTitleAttributes)
         
-        // Başlık Ekleme
-        let title = "Genesis Genetik Labaratuvarı"
-        let titleAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.boldSystemFont(ofSize: 16)
-        ]
-        let titleSize = title.size(withAttributes: titleAttributes)
-        let titleRect = CGRect(x: (pageRect.width - titleSize.width) / 2, y: 130, width: titleSize.width, height: titleSize.height)
-        title.draw(in: titleRect, withAttributes: titleAttributes)
+                
+                // Rapor İçeriği
+                var reportText = ""
+                if let report = test.report {
+                    reportText = "\(report)"
+                } else {
+                    reportText = "Rapor bulunamadı."
+                }
+                let reportAttributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.systemFont(ofSize: 12)
+                ]
+                let reportRect = CGRect(x: 40, y: 430/*pageRect.height - 20*/, width: pageRect.width - 80, height: 20)
+                reportText.draw(in: reportRect, withAttributes: reportAttributes)
         
-        // Hastanın Bilgileri
-        let patientInfo = """
-        Hasta Adı: \(test.patient.general.name)
-        TC No: \(test.patient.general.tcNo)
-        """
-        let patientInfoAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 12)
-        ]
-        let patientInfoRect = CGRect(x: 20, y: 160, width: pageRect.width / 2 - 40, height: 40)
-        patientInfo.draw(in: patientInfoRect, withAttributes: patientInfoAttributes)
-        
-        // Lab Adresi
-        let labAddress = """
-        Adres: 5. Levent Mahallesi, 34060 Eyüpsultan/İstanbul
-        Telefon: +90 000 00 00
-        """
-        let labAddressAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 12)
-        ]
-        let labAddressRect = CGRect(x: pageRect.width / 2 + 20, y: 160, width: pageRect.width / 2 - 40, height: 40)
-        labAddress.draw(in: labAddressRect, withAttributes: labAddressAttributes)
-        
-        // Test Türü
-        let testType = "Test Türü: \(test.testType.testType.rawValue)"
-        let testTypeAttributes: [NSAttributedString.Key: Any] = [
+        //Consultancy Başlığı
+        let consultancyTitle = "Genetik Danışmanlık:"
+        let consultancyTitleAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 14)
-        ]
-        let testTypeRect = CGRect(x: 20, y: 210, width: pageRect.width - 40, height: 20)
-        testType.draw(in: testTypeRect, withAttributes: testTypeAttributes)
+            ]
         
-      
-        // Report İçeriği
-        let report = "Rapor: \(String(describing: test.report))"
-        let reportAttributes: [NSAttributedString.Key: Any] = [
+        let consultancyTitleRect = CGRect(x: 20, y: 450/*pageRect.height - 40*/, width: pageRect.width - 40, height: 20)
+        consultancyTitle.draw(in: consultancyTitleRect, withAttributes: consultancyTitleAttributes)
+
+        
+        //Consultancy İçeriği
+        var consultancyText = ""
+        if test.consultancy == true {
+            consultancyText = "Danışmanlık tavsiye ediliyor."
+        } else {
+            consultancyText = "Danışmanlık gerekmiyor."
+        }
+        let consultancyAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 12)
-        ]
-        let reportRect = CGRect(x: 20, y: 240, width: pageRect.width - 40, height: pageRect.height - 260)
-        report.draw(in: reportRect, withAttributes: reportAttributes)
+            ]
+        let consultancyRect = CGRect(x: 40, y: 470, width: pageRect.width - 80, height: 20)
+        consultancyText.draw(in: consultancyRect, withAttributes: consultancyAttributes)
+
+
+
         
         
         
-        
-        
-        
-    }
-    
-    return data
-}
+            }
+            
+            return data
+        }
 
 import FirebaseStorage
 

@@ -96,52 +96,155 @@ struct PatientPDFsView: View {
         }
     }
     
+//    private func fetchPDFURL(fileName: String, completion: @escaping (URL?, Error?) -> Void) {
+//        let storage = Storage.storage()
+//        let storageRef = storage.reference()
+//        let pdfRef = storageRef.child("reports/\(fileName)")
+//        
+//        pdfRef.downloadURL { url, error in
+//            completion(url, error)
+//        }
+//    }
+    
+    
+    
+    
     private func fetchPDFURL(fileName: String, completion: @escaping (URL?, Error?) -> Void) {
         let storage = Storage.storage()
         let storageRef = storage.reference()
         let pdfRef = storageRef.child("reports/\(fileName)")
-        
+
+        // Perform download operation asynchronously
         pdfRef.downloadURL { url, error in
-            completion(url, error)
+            // Ensure to call the completion handler on the main thread
+            DispatchQueue.main.async {
+                completion(url, error)
+            }
         }
     }
+
+    
+    
+    
+    
+    
+    
+    
+//    private func sharePDF(url: URL) {
+//        let fileName = "Report.pdf"
+//        
+//        guard let pdfData = try? Data(contentsOf: url) else {
+//            print("Failed to get PDF data from URL")
+//            return
+//        }
+//        
+//        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+//        
+//        do {
+//            try pdfData.write(to: tempURL)
+//            let activityViewController = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
+//            
+//            if let topController = UIApplication.shared.windows.first?.rootViewController {
+//                topController.present(activityViewController, animated: true, completion: nil)
+//            }
+//        } catch {
+//            print("Failed to write PDF data to temporary URL: \(error.localizedDescription)")
+//        }
+//    }
+    
     
     private func sharePDF(url: URL) {
         let fileName = "Report.pdf"
         
-        guard let pdfData = try? Data(contentsOf: url) else {
-            print("Failed to get PDF data from URL")
-            return
-        }
-        
-        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
-        
-        do {
-            try pdfData.write(to: tempURL)
-            let activityViewController = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
-            
-            if let topController = UIApplication.shared.windows.first?.rootViewController {
-                topController.present(activityViewController, animated: true, completion: nil)
+        DispatchQueue.global().async {
+            do {
+                guard let pdfData = try? Data(contentsOf: url) else {
+                    print("Failed to get PDF data from URL")
+                    return
+                }
+                
+                let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+                
+                try pdfData.write(to: tempURL)
+                
+                DispatchQueue.main.async {
+                    // Update UI on the main thread
+                    let activityViewController = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
+                    
+                    if let window = UIApplication.shared.windows.first,
+                       let rootViewController = window.rootViewController {
+                        if let presentedViewController = rootViewController.presentedViewController {
+                            presentedViewController.dismiss(animated: true) {
+                                // Dismissal complete, now present activityViewController
+                                rootViewController.present(activityViewController, animated: true, completion: nil)
+                            }
+                        } else {
+                            // No presented view controller, directly present activityViewController
+                            rootViewController.present(activityViewController, animated: true, completion: nil)
+                        }
+                    }
+                }
+            } catch {
+                print("Failed to write PDF data to temporary URL: \(error.localizedDescription)")
             }
-        } catch {
-            print("Failed to write PDF data to temporary URL: \(error.localizedDescription)")
         }
     }
+
+
+
+
+
+
+    
+    
 }
+
+//struct PDFKitView: UIViewRepresentable {
+//    let url: URL
+//
+//    func makeUIView(context: Context) -> PDFView {
+//        let pdfView = PDFView()
+//        pdfView.document = PDFDocument(url: url)
+//        return pdfView
+//    }
+//
+//    func updateUIView(_ pdfView: PDFView, context: Context) {
+//        pdfView.document = PDFDocument(url: url)
+//    }
+//}
 
 struct PDFKitView: UIViewRepresentable {
     let url: URL
-
+    
     func makeUIView(context: Context) -> PDFView {
         let pdfView = PDFView()
-        pdfView.document = PDFDocument(url: url)
+        loadPDF(from: url, into: pdfView)
         return pdfView
     }
-
+    
     func updateUIView(_ pdfView: PDFView, context: Context) {
-        pdfView.document = PDFDocument(url: url)
+        loadPDF(from: url, into: pdfView)
+    }
+    
+    private func loadPDF(from url: URL, into pdfView: PDFView) {
+        DispatchQueue.global().async {
+            if let document = PDFDocument(url: url) {
+                DispatchQueue.main.async {
+                    pdfView.document = document
+                }
+            } else {
+                print("Failed to load PDF document from URL: \(url)")
+                // Handle error or show a placeholder
+            }
+        }
     }
 }
+
+
+
+
+
+
 
 private func formattedDate(_ date: Date) -> String {
     let formatter = DateFormatter()

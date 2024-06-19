@@ -29,11 +29,11 @@ struct AddAnalysisSheet: View {
         // Test türüne göre picker seçeneklerini belirle
         switch testResultsViewModel.test.testType.testType {
         case .ces, .tekgen, .cftr, .kalitsalkanser, .hiperamoni:
-            options = ["Analiz Tip 1 Seçilim", "Analiz Tip 2 Seçilim", "Analiz Tip 2 Seçilim"]
+            options = ["Analiz Tip 1 Seçilim", "Analiz Tip 2 Seçilim", "Analiz Tip 3 Seçilim"]
         case .smn1:
             options = ["Varyasyon A", "Varyasyon B", "Varyasyon C"]
         default:
-            options = ["Varyasyon X", "Varyasyon Y", "Varyasyon XX"]
+            options = ["Varyasyon X", "Varyasyon Y", "Varyasyon XY"]
         }
     }
     

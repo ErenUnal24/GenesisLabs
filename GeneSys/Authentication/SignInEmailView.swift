@@ -1,4 +1,3 @@
-//
 //  SignInEmailView.swift
 //  GeneSys
 //
@@ -8,19 +7,23 @@
 import SwiftUI
 
 struct SignInEmailView: View {
-    
+
     @StateObject private var viewModel = SignInEmailViewModel()
     @Binding var showSignInView: Bool
-    
+
     @State private var resetPasswordSheet: Bool = false
     @State private var isUserSignedIn: Bool = false
-    
+
     @Environment(\.dismiss) var dismiss
-    
-    @State private var isGetNavigationViewActive = false
-    
+
     @State private var destination: DestinationType?
+    @State private var showSheet: Bool = false
     
+    @State private var errorMessage: String = ""
+    @State private var showErrorAlert: Bool = false
+
+
+
     enum DestinationType {
         case mainTabView
         case sampleTabView
@@ -29,9 +32,9 @@ struct SignInEmailView: View {
         case expertTabView
         case adminView
     }
-    
+
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [.topColor, .centerColor, .bottomColor]),
                                startPoint: .topLeading,
@@ -80,14 +83,15 @@ struct SignInEmailView: View {
                                 try await viewModel.signIn()
                                 isUserSignedIn = true
                                 
-                                // Yönlendirme işlemi burada gerçekleştirilecek
+                                // YÖNLENDİRME BURADA
                                 setDestination()
                                 
                             } catch {
                                 print("Sign In Error: \(error)")
-                                // Hata durumunda kullanıcıya bilgi verebilirsiniz, örneğin:
-                                // errorMessage = "Giriş yapılamadı: \(error.localizedDescription)"
-                                print("Hata")
+                                
+                                 errorMessage = "\(error.localizedDescription)"
+                                showErrorAlert = true
+
                             }
                         }
                     } label: {
@@ -100,7 +104,13 @@ struct SignInEmailView: View {
                             .cornerRadius(10)
                             .shadow(radius: 5)
                     }
-                    
+                    .navigationDestination(isPresented: $isUserSignedIn) {
+                        destinationView()
+                            .navigationBarBackButtonHidden(true)
+                    }
+                    .alert(isPresented: $showErrorAlert){
+                        Alert(title: Text("Hata"), message: Text(errorMessage),dismissButton: .default(Text("Tamam")))
+                    }
                     
                     // Şifremi Unuttum Butonu
                     Button(action: {
@@ -118,22 +128,23 @@ struct SignInEmailView: View {
                         .frame(height: 1)
                     
                     // Hasta Girişi Butonu
-                    NavigationLink(
-                        destination: destinationView(),
-                        isActive: $isUserSignedIn,
-                        label: {
-                            Text("Rapor Sorgula")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(height: 55)
-                                .frame(maxWidth: .infinity)
-                                .background(Color.green)
-                                .cornerRadius(10)
-                                .shadow(radius: 5)
-                        })
+                    Button(action: {
+                        showSheet.toggle()
+                    }, label: {
+                        Text("Hasta Girişi")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(height: 55)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.green)
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                    })
+                    .sheet(isPresented: $showSheet, content: {
+                        SignInPatientView(showSignInView: $showSignInView)
+                    })
                     
                     Spacer()
-                    
                     
                     //Whatsapp İletişin
                     HStack {
@@ -159,7 +170,7 @@ struct SignInEmailView: View {
             )
         }
     }
-    
+
     private func setDestination() {
         if let userType = viewModel.userType {
             switch userType {
@@ -181,7 +192,7 @@ struct SignInEmailView: View {
             destination = nil
         }
     }
-    
+
     @ViewBuilder
     private func destinationView() -> some View {
         if let destination = destination {

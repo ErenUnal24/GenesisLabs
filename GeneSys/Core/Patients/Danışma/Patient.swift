@@ -12,7 +12,6 @@ struct Patient: Identifiable, Codable{
     let documentID: String?
     var general: General
     var contact: Contact
- 
     var emergency: Emergency
     
    
@@ -46,9 +45,9 @@ extension Patient {
 
 extension Patient {
     struct Emergency: Codable {
-        var isEmergency: Bool
-        var emergencyName      : String
-        var emergencyNo : String
+        var isEmergency   : Bool
+        var emergencyName : String
+        var emergencyNo   : String
     }
 }
 
@@ -66,8 +65,8 @@ extension Patient {
                                             email: "")
         
         let emergency = Patient.Emergency(isEmergency: false,
-                                                emergencyName: "",
-                                            emergencyNo: "")
+                                          emergencyName: "",
+                                          emergencyNo: "")
         
         
         return Patient(id: UUID(), documentID: nil, general: general, contact: contact, emergency: emergency)

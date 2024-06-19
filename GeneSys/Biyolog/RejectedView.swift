@@ -23,7 +23,7 @@ struct RejectedView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(filteredTests) { test in
                     NavigationLink(destination: UpdateReportView(test: test, dataManager: dm)) {

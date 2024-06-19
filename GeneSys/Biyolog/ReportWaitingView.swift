@@ -23,7 +23,7 @@ struct ReportWaitingView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(filteredTests) { test in
                     NavigationLink(destination: AddReportsView(test: test, dataManager: dm)) {

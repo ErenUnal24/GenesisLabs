@@ -61,7 +61,7 @@ struct AddUserView: View {
                             title: Text("'\(vm.newUser.general.name)' Adlı '\(vm.newUser.userType.userType.rawValue)' Personeli Kaydedilsin Mi?"),
                             primaryButton: .default(Text("Evet")) {
                                 vm.saveUser()
-                                dismiss()
+                               // dismiss()
                             },
                             secondaryButton: .cancel(Text("Hayır"))
                         )

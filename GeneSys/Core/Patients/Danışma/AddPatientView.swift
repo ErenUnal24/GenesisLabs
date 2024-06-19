@@ -14,6 +14,11 @@ struct AddPatientView: View {
     @State var isAlertShown: Bool = false
     @State var navigateToMenu: Bool = false
     
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+
+
+    
     let action: (_ patient: Patient) -> Void
     
     var body: some View {
@@ -83,18 +88,25 @@ struct AddPatientView: View {
                         .textContentType(.name)
                         .keyboardType(.namePhonePad)
                         
-                    TextField("No", text: $vm.newPatient.emergency.emergencyNo)
-                        .textContentType(.name)
-                        .keyboardType(.namePhonePad)
-                    
-
-                        
-
+                    TextField("Telefon No", text: $vm.newPatient.emergency.emergencyNo)
+                        .textContentType(.telephoneNumber)
+                        .keyboardType(.phonePad)
+                        .onChange(of: vm.newPatient.emergency.emergencyNo) { newValue in
+                            vm.newPatient.emergency.emergencyNo = formatPhoneNumber(newValue)
+                            
+                        }
                 }
                 
                 Button("Hepsini Temizle", role: .destructive) {
                     vm.clearAll()
                 }
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Uyarı"),
+                    message: Text(alertMessage),
+                    dismissButton: .default(Text("Tamam"))
+                )
             }
             .navigationTitle("Hasta Kayıt")
             .toolbar {
@@ -126,10 +138,18 @@ struct AddPatientView: View {
             return ""
         }
         
+//        var result = filtered
+//        if !result.hasPrefix("5") {
+//            result = "5" + result
+//        }
+        
         var result = filtered
         if !result.hasPrefix("5") {
-            result = "5" + result
+            showAlert = true
+            alertMessage = "Telefon Numarası '5' ile başlamalıdır."
         }
+        
+
         
         if result.count > 10 {
             result = String(result.prefix(10))
@@ -137,7 +157,9 @@ struct AddPatientView: View {
         
         return result
     }
+    
 }
+
 
 struct AddPatientsView_Previews: PreviewProvider {
     static var previews: some View {

@@ -25,6 +25,7 @@ struct PatientInfoView: View {
             Divider()
             Text("**Telefon**: \(item.contact.phoneNumber)")
             Text("**Email**: \(item.contact.email)")
+
             
             Divider()
             
@@ -104,9 +105,11 @@ struct PatientInfoView: View {
                 }
                 
                 if showEmergencyInfo {
-                    Text(item.emergency.emergencyName)
-                    Text(item.emergency.emergencyNo)
-
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("İsim: \(item.emergency.emergencyName)")
+                        Text("Telefon No: \(item.emergency.emergencyNo)")
+                        
+                    }
                 }
             }
         }

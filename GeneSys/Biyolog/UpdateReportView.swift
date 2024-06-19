@@ -35,7 +35,7 @@ struct UpdateReportView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Hasta Adı: \(testResultsViewModel.test.patient.general.name)")

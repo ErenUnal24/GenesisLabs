@@ -36,15 +36,13 @@ struct SampleWaitingView: View {
                         
                     
                     VStack(alignment: .leading) {
-                        Text("Test Type: \(test.testType.testType.rawValue)")
+                        Text("Test Türü: \(test.testType.testType.rawValue)")
                             .font(.headline)
-                        Text("Patient Name: \(test.patient.general.name)")
+                        Text("Hasta İsmi: \(test.patient.general.name)")
                             .font(.subheadline)
-                        Text("Patient TCNo: \(test.patient.general.tcNo)")
+                        Text("Hasta TC: \(test.patient.general.tcNo)")
                             .font(.subheadline)
-                        Text("Patient Ad: \(test.patient.general.name)")
-                            .font(.subheadline)
-                        Text("Status: \(test.status.status.rawValue)")
+                        Text("Durum: \(test.status.status.rawValue)")
                             .font(.subheadline)
                     }
                     .padding()

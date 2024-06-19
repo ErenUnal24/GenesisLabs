@@ -30,16 +30,32 @@ final class SignInEmailViewModel: ObservableObject {
         try await AuthenticationManager.shared.createUser(email: email, password: password)
     }
     
-    enum AuthenticationError: Error {
-        case missingEmailOrPassword
-        //case missingCurrentUser
-    }
+    // Enum for authentication errors
+        enum AuthenticationError: LocalizedError {
+            case missingEmailOrPassword
+            case passwordsDoNotMatch
+            case signInFailed
+            case resetPasswordFailed
+            case fetchUserTypeFailed
+            
+            var errorDescription: String? {
+                switch self {
+                case .missingEmailOrPassword:
+                    return "Email ve Parola Boş Olamaz!"
+                case .passwordsDoNotMatch:
+                    return "Şifreler Eşleşmiyor!"
+                case .signInFailed:
+                    return "Oturum açma başarısız oldu. Lütfen kimlik bilgilerinizi kontrol edin!"
+                case .resetPasswordFailed:
+                    return "Failed to reset password."
+                case .fetchUserTypeFailed:
+                    return "Failed to fetch user type."
+                }
+            }
+        }
     
-//    enum FetchUserTypeError: Error {
-//        case invalidUserType
-//        case userDocumentNotFound
-//    }
-//    
+    
+    
     func signIn() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             throw AuthenticationError.missingEmailOrPassword
@@ -50,15 +66,14 @@ final class SignInEmailViewModel: ObservableObject {
             // Kullanıcı türünü al
             try await fetchUserType()
         } catch {
-            throw error // Herhangi bir hata oluşursa dışarıya fırlat
+            throw AuthenticationError.signInFailed // Herhangi bir hata oluşursa dışarıya fırlat
         }
     }
 
     
     func resetPassword() async throws {
         guard !email.isEmpty else {
-            print("Email adresinizi giriniz.")
-            return
+            throw AuthenticationError.missingEmailOrPassword
         }
         
         try await AuthenticationManager.shared.resetPassword(email: email)

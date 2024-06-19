@@ -23,7 +23,7 @@ struct WaitingForExpertView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(filteredTests) { test in
                     let testResultsViewModel = TestResultsViewModel(test: test, dataManager: dataManager)

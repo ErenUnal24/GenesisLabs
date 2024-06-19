@@ -17,7 +17,7 @@ struct AddAnalysisView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Text("Hasta Bilgileri")
                     .font(.title.bold())
