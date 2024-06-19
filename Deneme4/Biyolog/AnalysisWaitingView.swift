@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AnalysisWaitingView: View {
     @StateObject private var viewModel = ResultAcceptedViewModel()
-    @StateObject private var dm = TestDataManager()
+        @StateObject private var dm = TestDataManager()
 
     @State private var searchText = ""
 

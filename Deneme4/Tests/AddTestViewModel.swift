@@ -61,7 +61,8 @@ final class AddTestViewModel: ObservableObject {
                                 ),
                                 emergency: Patient.Emergency(
                                     isEmergency: data["isEmergency"] as? Bool ?? false,
-                                    notes: data["emergencyNotes"] as? String ?? ""
+                                    emergencyName: data["emergencyName"] as? String ?? "",
+                                    emergencyNo: data["emergencyNo"] as? String ?? ""
                                 )
                             )
                             

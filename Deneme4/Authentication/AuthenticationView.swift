@@ -30,15 +30,12 @@ struct AuthenticationView: View {
                 Spacer()
                 
             }
-            .padding(/*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            .padding()
             .navigationTitle("Email ile Giriş Yap")
-            
         }
     }
 }
 
-
-    
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
@@ -46,4 +43,3 @@ struct AuthenticationView_Previews: PreviewProvider {
         }
     }
 }
-

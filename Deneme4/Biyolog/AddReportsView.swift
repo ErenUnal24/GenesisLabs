@@ -13,6 +13,9 @@ struct AddReportsView: View {
     @ObservedObject var testResultsViewModel: TestResultsViewModel
     @StateObject private var dm: TestDataManager
     
+    @State var isAlertShown: Bool = false
+    @State var navigateToMenu: Bool = false
+    
     var onAddAnalysis: (String) -> Void
     @Environment(\.presentationMode) var presentationModedfhgfh
 
@@ -54,24 +57,23 @@ struct AddReportsView: View {
                 
                 Spacer()
                 
+               
                 Button("Kaydet") {
-                    dm.saveReport(for: testResultsViewModel.test, report: reportText)
-                    
-//                    generatePDF() // Rapor kaydedildiğinde PDF oluştur
-//                    if let data = pdfData {
-//                        uploadPDF(data: data, for: testResultsViewModel.test) { url, error in
-//                            if let error = error {
-//                                print("PDF yükleme hatası: \(error)")
-//                            } else if let url = url {
-//                                print("PDF başarıyla yüklendi: \(url)")
-//                                self.uploadedPDFURL = url
-//                            }
-//                        }
-//                    }
-                    
-                    onAddAnalysis(reportText)
-                    // presentationMode.wrappedValue.dismiss()
+                    isAlertShown.toggle()
                 }
+                .alert(isPresented: $isAlertShown, content: {
+                    Alert(
+                        title: Text("Rapor Kaydedilsin Mi?"),
+                        primaryButton: .default(Text("Evet")) {
+                            dm.saveReport(for: testResultsViewModel.test, report: reportText)
+                            onAddAnalysis(reportText)
+
+                        },
+                        secondaryButton: .cancel(Text("Hayır"))
+                    )
+                })
+                
+                
                 .padding()
                 .foregroundColor(.white)
                 .background(Color.blue)
@@ -155,7 +157,8 @@ struct AddReportsView_Previews: PreviewProvider {
                 ),
                 emergency: Patient.Emergency(
                     isEmergency: false,
-                    notes: "No notes"
+                    emergencyName: "Julia",
+                    emergencyNo: "5635645345"
                 )
             ),
             status: Test.Status(status: .numuneBekliyor),

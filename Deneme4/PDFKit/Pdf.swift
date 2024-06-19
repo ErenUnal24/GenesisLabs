@@ -79,7 +79,7 @@ func createPDF(for test: Test) -> Data {
         
       
         // Report İçeriği
-        let report = "Rapor: \(test.report)"
+        let report = "Rapor: \(String(describing: test.report))"
         let reportAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 12)
         ]
@@ -122,8 +122,10 @@ import FirebaseStorage
 func uploadPDF(data: Data, for test: Test, completion: @escaping (URL?, Error?) -> Void) {
     let storage = Storage.storage()
     let storageRef = storage.reference()
-    let pdfRef = storageRef.child("reports/\(test.tcNo + "_" + test.patient.general.name + "_" + test.testType.testType.rawValue).pdf")
+    let timestamp = Int(Date().timeIntervalSince1970)
 
+    let pdfRef = storageRef.child("reports/\(test.patient.general.tcNo)-\(test.testType.testType.rawValue)-\(timestamp).pdf")
+    
     let metadata = StorageMetadata()
     metadata.contentType = "application/pdf"
 
@@ -186,40 +188,94 @@ func uploadPDF(data: Data, for test: Test, completion: @escaping (URL?, Error?) 
 
 
 // Firestore Storage'dan PDF dosyalarının URL'lerini çeken fonksiyon
-func fetchPDFURLsFromFirestoreStorage(completion: @escaping ([URL]?, Error?) -> Void) {
+//func fetchPDFURLsFromFirestoreStorage(completion: @escaping ([URL]?, Error?) -> Void) {
+//    let storage = Storage.storage()
+//    let storageRef = storage.reference()
+//    let pdfFolderRef = storageRef.child("reports") // PDF dosyalarının saklandığı klasör referansı
+//
+//    pdfFolderRef.listAll { (result, error) in
+//        if let error = error {
+//            print("Firestore Storage'dan PDF URL'lerini alırken hata oluştu: \(error.localizedDescription)")
+//            completion(nil, error)
+//            return
+//        }
+//
+//        var pdfURLs: [URL] = []
+//
+//        for item in result!.items {
+//            item.downloadURL { (url, error) in
+//                if let error = error {
+//                    print("PDF dosyası için download URL alınamadı: \(error.localizedDescription)")
+//                    completion(nil, error)
+//                    return
+//                }
+//
+//                if let url = url {
+//                    pdfURLs.append(url)
+//                }
+//
+//                // Tüm URL'ler alındığında completion handler'ı çağır
+//                if pdfURLs.count == result!.items.count {
+//                    completion(pdfURLs, nil)
+//                }
+//            }
+//        }
+//    }
+//}
+func fetchPDFURLsFromFirestoreStorage(completion: @escaping ([String]?, Error?) -> Void) {
     let storage = Storage.storage()
     let storageRef = storage.reference()
     let pdfFolderRef = storageRef.child("reports") // PDF dosyalarının saklandığı klasör referansı
 
     pdfFolderRef.listAll { (result, error) in
         if let error = error {
-            print("Firestore Storage'dan PDF URL'lerini alırken hata oluştu: \(error.localizedDescription)")
+            print("Firestore Storage'dan PDF dosya isimlerini alırken hata oluştu: \(error.localizedDescription)")
             completion(nil, error)
             return
         }
 
-        var pdfURLs: [URL] = []
+        var pdfFileNames: [String] = []
 
         for item in result!.items {
-            item.downloadURL { (url, error) in
-                if let error = error {
-                    print("PDF dosyası için download URL alınamadı: \(error.localizedDescription)")
-                    completion(nil, error)
-                    return
-                }
-
-                if let url = url {
-                    pdfURLs.append(url)
-                }
-
-                // Tüm URL'ler alındığında completion handler'ı çağır
-                if pdfURLs.count == result!.items.count {
-                    completion(pdfURLs, nil)
-                }
-            }
+            let fileName = item.name
+            pdfFileNames.append(fileName)
         }
+
+        completion(pdfFileNames, nil)
     }
 }
+
+
+//func fetchPDFURLsFromFirestoreStorage(completion: @escaping ([String]?, Error?) -> Void) {
+//    let storage = Storage.storage()
+//    let storageRef = storage.reference()
+//    let pdfFolderRef = storageRef.child("reports") // PDF dosyalarının saklandığı klasör referansı
+//   // let pdfFolderRef = db.collection("")
+//    let ref = db.collection("Tests").whereField("status", isEqualTo: "Rapor Oluştu")
+//
+//
+//    pdfFolderRef.listAll { (result, error) in
+//        if let error = error {
+//            print("Firestore Storage'dan PDF dosya isimlerini alırken hata oluştu: \(error.localizedDescription)")
+//            completion(nil, error)
+//            return
+//        }
+//
+//        var pdfFileNames: [String:Patient] = [:]
+//
+//        for item in result!.items {
+//            let fileName = item.name
+//            pdfFileNames.append(fileName) //dictioanary'nin key değerlerini doldur ama dosya adını böl ve sadece tc kısmını al
+//        }
+//
+//        completion(pdfFileNames, nil)
+//    }
+//}
+
+
+
+
+
 
 func createAndUploadPDF(for test: Test, completion: @escaping (URL?, Error?) -> Void) {
         let pdfData = createPDF(for: test)
@@ -247,27 +303,49 @@ func createAndUploadPDF(for test: Test, completion: @escaping (URL?, Error?) -> 
     }
 
 
-func fetchPDFs(for tests: [Test], completion: @escaping ([URL?]) -> Void) {
-        var pdfURLs: [URL?] = []
-        
-        for test in tests {
-            if let documentID = test.documentID {
-                let storageRef = storage.reference().child("pdfs/\(documentID).pdf")
-                
-                storageRef.downloadURL { (url, error) in
-                    if let url = url {
-                        pdfURLs.append(url)
-                    } else {
-                        pdfURLs.append(nil)
-                    }
-                    
-                    if pdfURLs.count == tests.count {
-                        completion(pdfURLs)
-                    }
-                }
-            }
+//func fetchPDFs(for tests: [Test], completion: @escaping ([URL?]) -> Void) {
+//        var pdfURLs: [URL?] = []
+//        
+//        for test in tests {
+//            if let documentID = test.documentID {
+//                let storageRef = storage.reference().child("pdfs/\(documentID).pdf")
+//                
+//                storageRef.downloadURL { (url, error) in
+//                    if let url = url {
+//                        pdfURLs.append(url)
+//                    } else {
+//                        pdfURLs.append(nil)
+//                    }
+//                    
+//                    if pdfURLs.count == tests.count {
+//                        completion(pdfURLs)
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+
+
+
+
+func fetchPDFFileNamesForPatient(_ patient: Patient, completion: @escaping ([String]?, Error?) -> Void) {
+    let storage = Storage.storage()
+    let storageRef = storage.reference()
+    let pdfFolderRef = storageRef.child("reports")
+    
+    pdfFolderRef.listAll { (result, error) in
+        if let error = error {
+            completion(nil, error)
+            return
         }
+        
+        let patientPDFs = result!.items.filter { $0.name.starts(with: patient.general.tcNo) }
+        let fileNames = patientPDFs.map { $0.name }
+        
+        completion(fileNames, nil)
     }
+}
 
 //
 //func displayPDF(from url: URL, in view: UIView) {

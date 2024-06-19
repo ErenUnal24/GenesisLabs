@@ -9,6 +9,13 @@ import SwiftUI
 
 struct AddResultsView: View {
     @ObservedObject private var testResultsViewModel: TestResultsViewModel
+    
+    @Environment(\.dismiss) private var dismiss
+    @State var isAlertShown: Bool = false
+    @State var navigateToMenu: Bool = false
+
+    
+
 
     init(test: Test, dataManager: TestDataManager) {
         self.testResultsViewModel = TestResultsViewModel(test: test, dataManager: dataManager)
@@ -50,15 +57,43 @@ struct AddResultsView: View {
                         }
                     }
 
-                    Button(action: {
-                        testResultsViewModel.saveTestResults()
-                    }) {
-                        Text("Sonuçları Kaydet")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
+//                    Button(action: {
+//                        testResultsViewModel.saveTestResults()
+//                    }) {
+//                        Text("Sonuçları Kaydet")
+//                            .padding()
+//                            .background(Color.blue)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(8)
+//                    }
+                    
+                  //  .navigationBarTitle("Sonuç Girişi", displayMode: .inline)
+                 //   .toolbar {
+                 //       ToolbarItem(placement: .confirmationAction) {
+                     //       NavigationLink(destination: MenuView(), isActive: $navigateToMenu) {
+                                Button("Kaydet") {
+                                    isAlertShown.toggle()
+                                }
+                                .alert(isPresented: $isAlertShown, content: {
+                                    Alert(
+                                        title: Text("Sonuçlar Kaydedilsin Mi?"),
+                                        primaryButton: .default(Text("Evet")) {
+                                            testResultsViewModel.saveTestResults()
+                                            dismiss()
+                                        },
+                                        secondaryButton: .cancel(Text("Hayır"))
+                                    )
+                                })
+                               // .disabled(!testResultsViewModel.isValid)
+                       //     }
+                  //      }
+           //         }
+                    
+                    
+                    
+                    
+                    
+                    
                 }
             }
         }
@@ -85,7 +120,7 @@ struct AddResultsView_Previews: PreviewProvider {
                 ),
                 emergency: Patient.Emergency(
                     isEmergency: false,
-                    notes: "No notes"
+                    emergencyName: "Julia", emergencyNo: "243534534"
                 )
             ),
             status: Test.Status(status: .numuneBekliyor),

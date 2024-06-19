@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuViewBiologist: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 NavigationLink(destination: PatientViewForSample()) {
                     MenuRow(icon: "person.2.fill", title: "Hastalar")
@@ -33,7 +33,7 @@ struct MenuViewBiologist: View {
                 }
                 .padding(.vertical)
                 
-                NavigationLink(destination: ReportedView()) {
+                NavigationLink(destination: RejectedView()) {
                 VStack(alignment: .leading) {
                     MenuRow(icon: "flask.fill", title: "Yeniden Raporlanacak")
                         .padding(.vertical)

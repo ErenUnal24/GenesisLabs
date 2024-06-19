@@ -11,6 +11,9 @@ struct AddAnalysisSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var testResultsViewModel: TestResultsViewModel
     @StateObject private var dm = TestDataManager()
+    @Environment(\.dismiss) private var dismiss
+    @State var isAlertShown: Bool = false
+    @State var navigateToMenu: Bool = false
 
     var onAddAnalysis: (String) -> Void
     
@@ -26,11 +29,11 @@ struct AddAnalysisSheet: View {
         // Test türüne göre picker seçeneklerini belirle
         switch testResultsViewModel.test.testType.testType {
         case .ces, .tekgen, .cftr, .kalitsalkanser, .hiperamoni:
-            options = ["Seçenek 1", "Seçenek 2", "Seçenek 3"]
+            options = ["Analiz Tip 1 Seçilim", "Analiz Tip 2 Seçilim", "Analiz Tip 2 Seçilim"]
         case .smn1:
-            options = ["Seçenek A", "Seçenek B", "Seçenek C"]
+            options = ["Varyasyon A", "Varyasyon B", "Varyasyon C"]
         default:
-            options = ["Seçenek X", "Seçenek Y", "Seçenek Z"]
+            options = ["Varyasyon X", "Varyasyon Y", "Varyasyon XX"]
         }
     }
     
@@ -82,11 +85,26 @@ struct AddAnalysisSheet: View {
                 
                 Spacer()
                 
+//                Button("Kaydet") {
+//                    dm.saveAnalysis(for: testResultsViewModel.test, analysis: analysisText)
+//                    onAddAnalysis(analysisText)
+//                    presentationMode.wrappedValue.dismiss()
+//                }
+                
                 Button("Kaydet") {
-                    dm.saveAnalysis(for: testResultsViewModel.test, analysis: analysisText)
-                    onAddAnalysis(analysisText)
-                    presentationMode.wrappedValue.dismiss()
+                    isAlertShown.toggle()
                 }
+                .alert(isPresented: $isAlertShown, content: {
+                    Alert(
+                        title: Text("Analiz Kaydedilsin Mi?"),
+                        primaryButton: .default(Text("Evet")) {
+                            dm.saveAnalysis(for: testResultsViewModel.test, analysis: analysisText)
+                            onAddAnalysis(analysisText)
+                            presentationMode.wrappedValue.dismiss()
+                        },
+                        secondaryButton: .cancel(Text("Hayır"))
+                    )
+                })
 
                 .padding()
                 .foregroundColor(.white)
@@ -124,7 +142,8 @@ struct AddAnalysisSheet_Previews: PreviewProvider {
                 ),
                 emergency: Patient.Emergency(
                     isEmergency: false,
-                    notes: "No notes"
+                    emergencyName: "Emergency Name",
+                    emergencyNo: "Emergency No"
                 )
             ),
             status: Test.Status(status: .numuneBekliyor),

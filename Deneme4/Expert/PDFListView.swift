@@ -1,51 +1,103 @@
-//
-//  PDFListView.swift
-//  Deneme4
-//
-//  Created by Eren on 16.06.2024.
-//
-
 import SwiftUI
 import PDFKit
+import FirebaseStorage
 
 struct PDFListView: View {
-    @State private var pdfURLs: [URL] = []
+    @State private var pdfFileNames: [String] = []
+    @State private var selectedPDFURL: URL? = nil
+    @State private var showPDFView: Bool = false
 
     var body: some View {
         NavigationView {
-            List(pdfURLs, id: \.self) { url in
+            List(pdfFileNames, id: \.self) { fileName in
                 Button(action: {
-                    displayPDF(from: url)
+                    fetchPDFURL(fileName: fileName) { url, error in
+                        if let error = error {
+                            print("PDF URL'yi alırken hata oluştu: \(error.localizedDescription)")
+                            return
+                        }
+
+                        if let url = url {
+                            self.selectedPDFURL = url
+                            self.showPDFView = true
+                        }
+                    }
                 }) {
-                    Text("PDF Görüntüle")
+                    Text(fileName)
                 }
             }
             .navigationTitle("PDF Listesi")
             .onAppear {
-                fetchPDFURLsFromFirestoreStorage { urls, error in
+                fetchPDFFileNamesFromFirestoreStorage { fileNames, error in
                     if let error = error {
-                        print("PDF URL'leri alınırken hata oluştu: \(error.localizedDescription)")
+                        print("PDF dosya isimleri alınırken hata oluştu: \(error.localizedDescription)")
                         return
                     }
 
-                    if let urls = urls {
-                        self.pdfURLs = urls
+                    if let fileNames = fileNames {
+                        self.pdfFileNames = fileNames
                     }
+                }
+            }
+            .sheet(isPresented: $showPDFView) {
+                if let url = selectedPDFURL {
+                    PDFViewWrapper(url: url)
                 }
             }
         }
     }
 
-    private func displayPDF(from url: URL) {
-        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
-            return
+    private func fetchPDFURL(fileName: String, completion: @escaping (URL?, Error?) -> Void) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let pdfRef = storageRef.child("reports").child(fileName)
+
+        pdfRef.downloadURL { url, error in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                completion(url, nil)
+            }
         }
+    }
+
+    private func fetchPDFFileNamesFromFirestoreStorage(completion: @escaping ([String]?, Error?) -> Void) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let pdfFolderRef = storageRef.child("reports")
+
+        pdfFolderRef.listAll { (result, error) in
+            if let error = error {
+                print("Firestore Storage'dan PDF dosya isimlerini alırken hata oluştu: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+
+            var pdfFileNames: [String] = []
+
+            for item in result!.items {
+                let fileName = item.name
+                pdfFileNames.append(fileName)
+            }
+
+            completion(pdfFileNames, nil)
+        }
+    }
+}
+
+struct PDFViewWrapper: UIViewControllerRepresentable {
+    let url: URL
+
+    func makeUIViewController(context: Context) -> UIViewController {
         let pdfViewController = UIViewController()
         let pdfView = PDFView(frame: pdfViewController.view.bounds)
+        pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         pdfView.document = PDFDocument(url: url)
         pdfViewController.view.addSubview(pdfView)
-        rootViewController.present(pdfViewController, animated: true, completion: nil)
+        return pdfViewController
     }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
 struct PDFListView_Previews: PreviewProvider {

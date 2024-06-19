@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B1164982C0CFFB500921D81 /* PatientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1164972C0CFFB500921D81 /* PatientView.swift */; };
+		7B1164982C0CFFB500921D81 /* PatientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1164972C0CFFB500921D81 /* PatientsView.swift */; };
 		7B2D766F2C0CAC2E000914A4 /* AddPatientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D766E2C0CAC2E000914A4 /* AddPatientView.swift */; };
 		7B2D76712C0CB893000914A4 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D76702C0CB893000914A4 /* Patient.swift */; };
 		7B2D76732C0CC35B000914A4 /* AddPatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D76722C0CC35B000914A4 /* AddPatientViewModel.swift */; };
@@ -15,17 +15,33 @@
 		7B2D76772C0CEE3F000914A4 /* PatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D76762C0CEE3F000914A4 /* PatientViewModel.swift */; };
 		7B372AED2C136D4000D07750 /* MenuViewSampleAccept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B372AEC2C136D4000D07750 /* MenuViewSampleAccept.swift */; };
 		7B372AEF2C137D3900D07750 /* PatientViewForSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B372AEE2C137D3900D07750 /* PatientViewForSample.swift */; };
-		7B579D982C1DB49B0005C9B4 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579D972C1DB49B0005C9B4 /* ReportsViewModel.swift */; };
-		7B579D9A2C1DB4BF0005C9B4 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579D992C1DB4BF0005C9B4 /* ReportsView.swift */; };
-		7B579D9C2C1DDAE00005C9B4 /* ReportPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579D9B2C1DDAE00005C9B4 /* ReportPDFView.swift */; };
 		7B579D9F2C1DF1910005C9B4 /* MenuViewExpert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579D9E2C1DF1910005C9B4 /* MenuViewExpert.swift */; };
 		7B579DA12C1DF4800005C9B4 /* WaitingForExpertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DA02C1DF4800005C9B4 /* WaitingForExpertView.swift */; };
 		7B579DA32C1DF4AD0005C9B4 /* ExpertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DA22C1DF4AD0005C9B4 /* ExpertViewModel.swift */; };
 		7B579DA52C1DF8390005C9B4 /* AddExpertOpinonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DA42C1DF8390005C9B4 /* AddExpertOpinonView.swift */; };
 		7B579DA72C1E4D600005C9B4 /* PDFListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DA62C1E4D600005C9B4 /* PDFListView.swift */; };
+		7B579DB02C1FBDD30005C9B4 /* PatientPDFsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DAF2C1FBDD30005C9B4 /* PatientPDFsView.swift */; };
+		7B579DB22C2048460005C9B4 /* RejectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DB12C2048460005C9B4 /* RejectedView.swift */; };
+		7B579DB42C2049E70005C9B4 /* RejectedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DB32C2049E70005C9B4 /* RejectedViewModel.swift */; };
+		7B579DB62C204D290005C9B4 /* UpdateReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DB52C204D290005C9B4 /* UpdateReportView.swift */; };
+		7B579DBA2C20AD010005C9B4 /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DB92C20AD010005C9B4 /* SignInEmailViewModel.swift */; };
+		7B579DBC2C20ADFC0005C9B4 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DBB2C20ADFC0005C9B4 /* SignUpView.swift */; };
+		7B579DBE2C20AE310005C9B4 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DBD2C20AE310005C9B4 /* ResetPasswordView.swift */; };
+		7B579DC12C20B7780005C9B4 /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DC02C20B7780005C9B4 /* UpdatePasswordViewModel.swift */; };
+		7B579DC32C20B79B0005C9B4 /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DC22C20B79B0005C9B4 /* UpdatePasswordView.swift */; };
+		7B579DC72C216D9E0005C9B4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DC62C216D9E0005C9B4 /* MainTabView.swift */; };
+		7B579DC92C2214940005C9B4 /* SampleTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DC82C2214940005C9B4 /* SampleTabView.swift */; };
+		7B579DCB2C2215400005C9B4 /* LabTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DCA2C2215400005C9B4 /* LabTabView.swift */; };
+		7B579DCD2C2215B80005C9B4 /* BiologTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DCC2C2215B80005C9B4 /* BiologTabView.swift */; };
+		7B579DCF2C2216450005C9B4 /* ExpertTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DCE2C2216450005C9B4 /* ExpertTabView.swift */; };
+		7B579DD42C221BD10005C9B4 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DD32C221BD10005C9B4 /* AdminView.swift */; };
+		7B579DD62C221FC70005C9B4 /* SignInPatientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DD52C221FC70005C9B4 /* SignInPatientView.swift */; };
+		7B579DD82C221FE80005C9B4 /* SignInPatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DD72C221FE80005C9B4 /* SignInPatientViewModel.swift */; };
+		7B579DDC2C22437D0005C9B4 /* PatientDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DDB2C22437D0005C9B4 /* PatientDetailViewModel.swift */; };
+		7B579DDE2C2257880005C9B4 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B579DDD2C2257880005C9B4 /* Color+Extension.swift */; };
 		7BD53D5B2C0212E600B52563 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD53D5A2C0212E600B52563 /* MenuView.swift */; };
 		7BD53D622C021F5000B52563 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD53D612C021F5000B52563 /* SearchBar.swift */; };
-		7BE198AF2C17B632007BC856 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198AE2C17B632007BC856 /* Users.swift */; };
+		7BE198AF2C17B632007BC856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198AE2C17B632007BC856 /* User.swift */; };
 		7BE198B12C17B957007BC856 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198B02C17B957007BC856 /* UserDataManager.swift */; };
 		7BE198B32C17BD03007BC856 /* AddUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198B22C17BD03007BC856 /* AddUserViewModel.swift */; };
 		7BE198B52C17BDEB007BC856 /* AddUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE198B42C17BDEB007BC856 /* AddUserView.swift */; };
@@ -100,7 +116,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7B1164972C0CFFB500921D81 /* PatientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientView.swift; sourceTree = "<group>"; };
+		7B1164972C0CFFB500921D81 /* PatientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientsView.swift; sourceTree = "<group>"; };
 		7B2D766E2C0CAC2E000914A4 /* AddPatientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientView.swift; sourceTree = "<group>"; };
 		7B2D76702C0CB893000914A4 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		7B2D76722C0CC35B000914A4 /* AddPatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientViewModel.swift; sourceTree = "<group>"; };
@@ -108,17 +124,33 @@
 		7B2D76762C0CEE3F000914A4 /* PatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewModel.swift; sourceTree = "<group>"; };
 		7B372AEC2C136D4000D07750 /* MenuViewSampleAccept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewSampleAccept.swift; sourceTree = "<group>"; };
 		7B372AEE2C137D3900D07750 /* PatientViewForSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewForSample.swift; sourceTree = "<group>"; };
-		7B579D972C1DB49B0005C9B4 /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
-		7B579D992C1DB4BF0005C9B4 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
-		7B579D9B2C1DDAE00005C9B4 /* ReportPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPDFView.swift; sourceTree = "<group>"; };
 		7B579D9E2C1DF1910005C9B4 /* MenuViewExpert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewExpert.swift; sourceTree = "<group>"; };
 		7B579DA02C1DF4800005C9B4 /* WaitingForExpertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForExpertView.swift; sourceTree = "<group>"; };
 		7B579DA22C1DF4AD0005C9B4 /* ExpertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertViewModel.swift; sourceTree = "<group>"; };
 		7B579DA42C1DF8390005C9B4 /* AddExpertOpinonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpertOpinonView.swift; sourceTree = "<group>"; };
 		7B579DA62C1E4D600005C9B4 /* PDFListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFListView.swift; sourceTree = "<group>"; };
+		7B579DAF2C1FBDD30005C9B4 /* PatientPDFsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientPDFsView.swift; sourceTree = "<group>"; };
+		7B579DB12C2048460005C9B4 /* RejectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RejectedView.swift; sourceTree = "<group>"; };
+		7B579DB32C2049E70005C9B4 /* RejectedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RejectedViewModel.swift; sourceTree = "<group>"; };
+		7B579DB52C204D290005C9B4 /* UpdateReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateReportView.swift; sourceTree = "<group>"; };
+		7B579DB92C20AD010005C9B4 /* SignInEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailViewModel.swift; sourceTree = "<group>"; };
+		7B579DBB2C20ADFC0005C9B4 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		7B579DBD2C20AE310005C9B4 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		7B579DC02C20B7780005C9B4 /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
+		7B579DC22C20B79B0005C9B4 /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
+		7B579DC62C216D9E0005C9B4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		7B579DC82C2214940005C9B4 /* SampleTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTabView.swift; sourceTree = "<group>"; };
+		7B579DCA2C2215400005C9B4 /* LabTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabTabView.swift; sourceTree = "<group>"; };
+		7B579DCC2C2215B80005C9B4 /* BiologTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiologTabView.swift; sourceTree = "<group>"; };
+		7B579DCE2C2216450005C9B4 /* ExpertTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertTabView.swift; sourceTree = "<group>"; };
+		7B579DD32C221BD10005C9B4 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		7B579DD52C221FC70005C9B4 /* SignInPatientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPatientView.swift; sourceTree = "<group>"; };
+		7B579DD72C221FE80005C9B4 /* SignInPatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPatientViewModel.swift; sourceTree = "<group>"; };
+		7B579DDB2C22437D0005C9B4 /* PatientDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailViewModel.swift; sourceTree = "<group>"; };
+		7B579DDD2C2257880005C9B4 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		7BD53D5A2C0212E600B52563 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		7BD53D612C021F5000B52563 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		7BE198AE2C17B632007BC856 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		7BE198AE2C17B632007BC856 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7BE198B02C17B957007BC856 /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		7BE198B22C17BD03007BC856 /* AddUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewModel.swift; sourceTree = "<group>"; };
 		7BE198B42C17BDEB007BC856 /* AddUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserView.swift; sourceTree = "<group>"; };
@@ -218,12 +250,14 @@
 			children = (
 				7B2D76702C0CB893000914A4 /* Patient.swift */,
 				7BD53D5A2C0212E600B52563 /* MenuView.swift */,
-				7B1164972C0CFFB500921D81 /* PatientView.swift */,
+				7B1164972C0CFFB500921D81 /* PatientsView.swift */,
 				7B2D76762C0CEE3F000914A4 /* PatientViewModel.swift */,
 				7B2D766E2C0CAC2E000914A4 /* AddPatientView.swift */,
 				7B2D76722C0CC35B000914A4 /* AddPatientViewModel.swift */,
 				7BEB40842C10CA200068E3E2 /* PatientEditView.swift */,
 				7BD53D612C021F5000B52563 /* SearchBar.swift */,
+				7B579DAF2C1FBDD30005C9B4 /* PatientPDFsView.swift */,
+				7B579DC62C216D9E0005C9B4 /* MainTabView.swift */,
 			);
 			name = "Danışma";
 			path = "Danışma";
@@ -237,6 +271,7 @@
 				7BE198C32C188414007BC856 /* SampleWaitingView.swift */,
 				7BE198C52C18A8CE007BC856 /* SampleAcceptedView.swift */,
 				7BE198CB2C18B00C007BC856 /* StatusUpdateView.swift */,
+				7B579DC82C2214940005C9B4 /* SampleTabView.swift */,
 			);
 			path = NumuneKabul;
 			sourceTree = "<group>";
@@ -251,6 +286,7 @@
 				7BE198D72C1B1DAB007BC856 /* ResultAcceptedViewModel.swift */,
 				7BE198D32C1A2E8A007BC856 /* TestResultsViewModel.swift */,
 				7BE198D92C1B1E70007BC856 /* TestDetailView.swift */,
+				7B579DCA2C2215400005C9B4 /* LabTabView.swift */,
 			);
 			path = Laboratuvar;
 			sourceTree = "<group>";
@@ -268,6 +304,10 @@
 				7BE198EB2C1BB942007BC856 /* AddReportsView.swift */,
 				7BE198F42C1BC698007BC856 /* ReportedView.swift */,
 				7BE198F62C1BC75C007BC856 /* ReportedViewModel.swift */,
+				7B579DB12C2048460005C9B4 /* RejectedView.swift */,
+				7B579DB32C2049E70005C9B4 /* RejectedViewModel.swift */,
+				7B579DB52C204D290005C9B4 /* UpdateReportView.swift */,
+				7B579DCC2C2215B80005C9B4 /* BiologTabView.swift */,
 			);
 			path = Biyolog;
 			sourceTree = "<group>";
@@ -275,21 +315,13 @@
 		7B372AF42C13ABD000D07750 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				7BE198AE2C17B632007BC856 /* Users.swift */,
+				7BE198AE2C17B632007BC856 /* User.swift */,
 				7BE198B22C17BD03007BC856 /* AddUserViewModel.swift */,
 				7BE198B42C17BDEB007BC856 /* AddUserView.swift */,
+				7B579DC02C20B7780005C9B4 /* UpdatePasswordViewModel.swift */,
+				7B579DC22C20B79B0005C9B4 /* UpdatePasswordView.swift */,
 			);
 			path = Users;
-			sourceTree = "<group>";
-		};
-		7B579D942C1DB4610005C9B4 /* Reports */ = {
-			isa = PBXGroup;
-			children = (
-				7B579D972C1DB49B0005C9B4 /* ReportsViewModel.swift */,
-				7B579D992C1DB4BF0005C9B4 /* ReportsView.swift */,
-				7B579D9B2C1DDAE00005C9B4 /* ReportPDFView.swift */,
-			);
-			path = Reports;
 			sourceTree = "<group>";
 		};
 		7B579D9D2C1DF1610005C9B4 /* Expert */ = {
@@ -300,8 +332,25 @@
 				7B579DA22C1DF4AD0005C9B4 /* ExpertViewModel.swift */,
 				7B579DA42C1DF8390005C9B4 /* AddExpertOpinonView.swift */,
 				7B579DA62C1E4D600005C9B4 /* PDFListView.swift */,
+				7B579DCE2C2216450005C9B4 /* ExpertTabView.swift */,
 			);
 			path = Expert;
+			sourceTree = "<group>";
+		};
+		7B579DAE2C1FBBED0005C9B4 /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+				7B2D76742C0CD358000914A4 /* PatientInfoView.swift */,
+			);
+			path = InfoView;
+			sourceTree = "<group>";
+		};
+		7B579DD02C221B940005C9B4 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				7B579DD32C221BD10005C9B4 /* AdminView.swift */,
+			);
+			path = Admin;
 			sourceTree = "<group>";
 		};
 		7BD53D4E2C01F7E800B52563 /* Core */ = {
@@ -316,6 +365,7 @@
 		7BD53D5C2C02178C00B52563 /* Patients */ = {
 			isa = PBXGroup;
 			children = (
+				7B579DAE2C1FBBED0005C9B4 /* InfoView */,
 				7B372AEA2C136B1E00D07750 /* Danışma */,
 			);
 			path = Patients;
@@ -368,12 +418,11 @@
 				7BE8E5E72BFE4E7600B2E25B /* Deneme4App.swift */,
 				7BE8E5E92BFE4E7600B2E25B /* ContentView.swift */,
 				7BE198EF2C1BC493007BC856 /* PDFKit */,
-				7B579D942C1DB4610005C9B4 /* Reports */,
+				7B579DD02C221B940005C9B4 /* Admin */,
 				7B579D9D2C1DF1610005C9B4 /* Expert */,
 				7B372AF32C138F1C00D07750 /* Biyolog */,
 				7B372AF22C138EF600D07750 /* Laboratuvar */,
 				7B372AEB2C136CC800D07750 /* NumuneKabul */,
-				7BEB40862C1118E00068E3E2 /* InfoView */,
 				7BE198B72C17C523007BC856 /* Tests */,
 				7BD53D4E2C01F7E800B52563 /* Core */,
 				7BE8E6242BFE55DF00B2E25B /* Authentication */,
@@ -381,6 +430,7 @@
 				7BE8E5EB2BFE4E7800B2E25B /* Assets.xcassets */,
 				7BE8E6112BFE4FE000B2E25B /* GoogleService-Info.plist */,
 				7BE8E5ED2BFE4E7800B2E25B /* Preview Content */,
+				7B579DDD2C2257880005C9B4 /* Color+Extension.swift */,
 			);
 			path = Deneme4;
 			sourceTree = "<group>";
@@ -418,16 +468,14 @@
 				7BE8E6252BFE55FB00B2E25B /* AuthenticationView.swift */,
 				7BE8E6292BFE5DAB00B2E25B /* AuthenticationManager.swift */,
 				7BE8E62D2BFE7D3100B2E25B /* SettingsView.swift */,
+				7B579DB92C20AD010005C9B4 /* SignInEmailViewModel.swift */,
+				7B579DBB2C20ADFC0005C9B4 /* SignUpView.swift */,
+				7B579DBD2C20AE310005C9B4 /* ResetPasswordView.swift */,
+				7B579DD52C221FC70005C9B4 /* SignInPatientView.swift */,
+				7B579DD72C221FE80005C9B4 /* SignInPatientViewModel.swift */,
+				7B579DDB2C22437D0005C9B4 /* PatientDetailViewModel.swift */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		7BEB40862C1118E00068E3E2 /* InfoView */ = {
-			isa = PBXGroup;
-			children = (
-				7B2D76742C0CD358000914A4 /* PatientInfoView.swift */,
-			);
-			path = InfoView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,23 +623,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BE198DE2C1B2708007BC856 /* AnalysisWaitingView.swift in Sources */,
-				7BE198AF2C17B632007BC856 /* Users.swift in Sources */,
+				7B579DDE2C2257880005C9B4 /* Color+Extension.swift in Sources */,
+				7B579DB62C204D290005C9B4 /* UpdateReportView.swift in Sources */,
+				7BE198AF2C17B632007BC856 /* User.swift in Sources */,
+				7B579DB22C2048460005C9B4 /* RejectedView.swift in Sources */,
 				7BE198BB2C17CA5C007BC856 /* TestDataManager.swift in Sources */,
+				7B579DC72C216D9E0005C9B4 /* MainTabView.swift in Sources */,
 				7BE198D82C1B1DAB007BC856 /* ResultAcceptedViewModel.swift in Sources */,
 				7BE198D42C1A2E8A007BC856 /* TestResultsViewModel.swift in Sources */,
 				7BE198B32C17BD03007BC856 /* AddUserViewModel.swift in Sources */,
 				7BE198B12C17B957007BC856 /* UserDataManager.swift in Sources */,
+				7B579DD82C221FE80005C9B4 /* SignInPatientViewModel.swift in Sources */,
 				7B2D76752C0CD358000914A4 /* PatientInfoView.swift in Sources */,
-				7B1164982C0CFFB500921D81 /* PatientView.swift in Sources */,
+				7B1164982C0CFFB500921D81 /* PatientsView.swift in Sources */,
 				7BE8E62E2BFE7D3100B2E25B /* SettingsView.swift in Sources */,
 				7BE198DC2C1B24CD007BC856 /* MenuViewBiologist.swift in Sources */,
 				7BE198D62C1B0D71007BC856 /* ResultAcceptedView.swift in Sources */,
 				7BE198C42C188414007BC856 /* SampleWaitingView.swift in Sources */,
 				7B579DA52C1DF8390005C9B4 /* AddExpertOpinonView.swift in Sources */,
+				7B579DC32C20B79B0005C9B4 /* UpdatePasswordView.swift in Sources */,
 				7BD53D5B2C0212E600B52563 /* MenuView.swift in Sources */,
 				7BE198C62C18A8CE007BC856 /* SampleAcceptedView.swift in Sources */,
+				7B579DD42C221BD10005C9B4 /* AdminView.swift in Sources */,
 				7BE198F72C1BC75C007BC856 /* ReportedViewModel.swift in Sources */,
-				7B579D9A2C1DB4BF0005C9B4 /* ReportsView.swift in Sources */,
+				7B579DB42C2049E70005C9B4 /* RejectedViewModel.swift in Sources */,
+				7B579DC12C20B7780005C9B4 /* UpdatePasswordViewModel.swift in Sources */,
+				7B579DBC2C20ADFC0005C9B4 /* SignUpView.swift in Sources */,
 				7BE8E5EA2BFE4E7600B2E25B /* ContentView.swift in Sources */,
 				7BE8E5E82BFE4E7600B2E25B /* Deneme4App.swift in Sources */,
 				7BE198EA2C1BB59A007BC856 /* ReportWaitingViewModel.swift in Sources */,
@@ -603,6 +660,7 @@
 				7BE198CE2C18D8CD007BC856 /* MenuViewLab.swift in Sources */,
 				7BE198D02C1A2C9C007BC856 /* ResultWaitingView.swift in Sources */,
 				7BE198E82C1BB43A007BC856 /* ReportWaitingView.swift in Sources */,
+				7B579DB02C1FBDD30005C9B4 /* PatientPDFsView.swift in Sources */,
 				7B2D76772C0CEE3F000914A4 /* PatientViewModel.swift in Sources */,
 				7BE198DA2C1B1E70007BC856 /* TestDetailView.swift in Sources */,
 				7BE8E62C2BFE6F7400B2E25B /* RootView.swift in Sources */,
@@ -615,24 +673,30 @@
 				7BE198C12C17CD0D007BC856 /* AddTestView.swift in Sources */,
 				7BE198EC2C1BB942007BC856 /* AddReportsView.swift in Sources */,
 				7BE198C82C18ADC0007BC856 /* SampleAcceptedViewModel.swift in Sources */,
+				7B579DCB2C2215400005C9B4 /* LabTabView.swift in Sources */,
+				7B579DD62C221FC70005C9B4 /* SignInPatientView.swift in Sources */,
 				7BE198E22C1B274E007BC856 /* AddAnalysisView.swift in Sources */,
+				7B579DCD2C2215B80005C9B4 /* BiologTabView.swift in Sources */,
 				7BE198F52C1BC698007BC856 /* ReportedView.swift in Sources */,
 				7BE198CA2C18AE72007BC856 /* UpdateTestViewModel.swift in Sources */,
 				7BE198F12C1BC4B6007BC856 /* Pdf.swift in Sources */,
+				7B579DCF2C2216450005C9B4 /* ExpertTabView.swift in Sources */,
+				7B579DBA2C20AD010005C9B4 /* SignInEmailViewModel.swift in Sources */,
+				7B579DBE2C20AE310005C9B4 /* ResetPasswordView.swift in Sources */,
 				7B579DA12C1DF4800005C9B4 /* WaitingForExpertView.swift in Sources */,
 				7B2D76712C0CB893000914A4 /* Patient.swift in Sources */,
 				7B2D766F2C0CAC2E000914A4 /* AddPatientView.swift in Sources */,
+				7B579DDC2C22437D0005C9B4 /* PatientDetailViewModel.swift in Sources */,
 				7B579DA32C1DF4AD0005C9B4 /* ExpertViewModel.swift in Sources */,
 				7BE198B52C17BDEB007BC856 /* AddUserView.swift in Sources */,
-				7B579D9C2C1DDAE00005C9B4 /* ReportPDFView.swift in Sources */,
 				7BEB40852C10CA200068E3E2 /* PatientEditView.swift in Sources */,
 				7BE198E62C1BA76E007BC856 /* AddAnalysisSheet.swift in Sources */,
 				7BE198BD2C17CBA3007BC856 /* TestViewModel.swift in Sources */,
 				7BE198BF2C17CC63007BC856 /* AddTestViewModel.swift in Sources */,
 				7BE198D22C1A2E08007BC856 /* AddResultsView.swift in Sources */,
+				7B579DC92C2214940005C9B4 /* SampleTabView.swift in Sources */,
 				7BE8E62A2BFE5DAB00B2E25B /* AuthenticationManager.swift in Sources */,
 				7BE8E6282BFE5B0300B2E25B /* SignInEmailView.swift in Sources */,
-				7B579D982C1DB49B0005C9B4 /* ReportsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

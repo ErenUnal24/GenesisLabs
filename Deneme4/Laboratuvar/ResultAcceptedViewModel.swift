@@ -12,6 +12,8 @@ class ResultAcceptedViewModel: ObservableObject {
     @Published var tests: [Test] = []
     private var dataManager = TestDataManager()
     private var cancellables: Set<AnyCancellable> = []
+    @Published var searchText: String = ""
+
 
     init() {
         fetchAnalysisWaitingTests()

@@ -18,6 +18,11 @@ struct AddExpertOpinionView: View {
     @State private var pdfData: Data? = nil
     @State private var uploadedPDFURL: URL? = nil
     @ObservedObject var testResultsViewModel: TestResultsViewModel
+    
+    @State var isAlertShown: Bool = false
+    @State var navigateToMenu: Bool = false
+    @Environment(\.dismiss) private var dismiss
+
 
     var statusOptions = ["Seçiniz", "Onayla", "Reddet"]
 
@@ -107,9 +112,11 @@ struct AddExpertOpinionView: View {
                 }
 
                 Button(action: {
-                    dataManager.saveExpertOpinion(for: test, selectedStatus: selectedStatus, consultancy: consultancy)
-                    generatePDF()
-                }) {
+                    isAlertShown.toggle()
+
+                }
+                    
+                ) {
                     Text("Kaydet")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -117,6 +124,19 @@ struct AddExpertOpinionView: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
+                .alert(isPresented: $isAlertShown, content: {
+                    Alert(
+                        title: Text("Test Durumu Güncellensin Mi?"),
+                        primaryButton: .default(Text("Evet")) {
+                            dataManager.saveExpertOpinion(for: test, selectedStatus: selectedStatus, consultancy: consultancy)
+                            if selectedStatus == "Onayla" {
+                                                    generatePDF()
+                                                }
+                            dismiss()
+                        },
+                        secondaryButton: .cancel(Text("Hayır"))
+                    )
+                })
                 .padding(.top, 20)
 
                 if let uploadedPDFURL = uploadedPDFURL {
@@ -169,7 +189,7 @@ struct AddExpertOpinionView_Previews: PreviewProvider {
                 documentID: "examplePatientID",
                 general: Patient.General(name: "Test Hasta", gender: .Erkek, birthdate: Date(), tcNo: "12345678901"),
                 contact: Patient.Contact(phoneNumber: "555-555-5555", email: "test@example.com"),
-                emergency: Patient.Emergency(isEmergency: false, notes: "Test notu")
+                emergency: Patient.Emergency(isEmergency: false, emergencyName: "Test name", emergencyNo: "Test No")
             ),
             status: Test.Status(status: .raporBekliyor),
             testType: Test.TestType(testType: .ces),

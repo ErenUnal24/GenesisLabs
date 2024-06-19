@@ -17,7 +17,9 @@ struct RootView: View {
                             if showSignInView {
                                 AuthenticationView(showSignInView: $showSignInView)
                             } else {
-                                MenuView()
+                              //  MenuView()
+                                SignInEmailView(showSignInView: $showSignInView)
+
                                 
                             }
                         }

@@ -11,30 +11,30 @@ struct MenuViewExpert: View {
     @StateObject private var dm = TestDataManager()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
+            
             List {
                 NavigationLink(destination: PatientViewForSample().environmentObject(dm)) {
                     MenuRow(icon: "person.2.fill", title: "Hastalar")
                 }
                 .padding(.vertical)
 
-                NavigationLink(destination: ReportedView().environmentObject(dm)) {
-                    MenuRow(icon: "flask.fill", title: "Raporlanmış")
-                }
-                .padding(.vertical)
-
                 NavigationLink(destination: WaitingForExpertView().environmentObject(dm)) {
-                    MenuRow(icon: "flask", title: "Rapor Onayı")
+                    MenuRow(icon: "person.fill.questionmark", title: "Rapor Onayı")
                 }
                 .padding(.vertical)
 
                 NavigationLink(destination: AnalysisWaitingView().environmentObject(dm)) {
-                    MenuRow(icon: "flask", title: "Onaylı Rapor")
+                    MenuRow(icon: "person.fill.checkmark", title: "Onaylı Rapor")
                 }
                 .padding(.vertical)
+                
             }
-            .navigationTitle("Analiz ve Rapor")
+            
+            .navigationTitle("Rapor Onayı")
+            
         }
+        
     }
 }
 

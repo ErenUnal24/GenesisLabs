@@ -39,7 +39,9 @@ class DataManager: ObservableObject {
                                   //      let testTypeString     = data["testType"] as? String ?? ""
                                  //       let testType           = Patient.TestType.TestTypeEnum(rawValue: testTypeString) ?? .ces
                                         let isEmergency        = data["isEmergency"] as? Bool ?? false
-                                        let emergencyNotes     = data["emergencyNotes"] as? String ?? ""
+                                        let emergencyName     = data["emergencyNotes"] as? String ?? ""
+                                        let emergencyNo     = data["emergencyNo"] as? String ?? ""
+
                              
                                         
                                         let patient = Patient(
@@ -56,7 +58,7 @@ class DataManager: ObservableObject {
                                             /*  testType: Patient.TestType(              testType: testType),  */
                                             
                                              emergency: Patient.Emergency(             isEmergency: isEmergency,
-                                                                                          notes: emergencyNotes)
+                                                                                       emergencyName: emergencyName, emergencyNo: emergencyName)
                                             
                                             
                                   //          sampleStatus: NewPatient.SampleStatus(       sampleStatus: sampleStatus),
@@ -92,7 +94,9 @@ class DataManager: ObservableObject {
             "email": patient.contact.email,
          //   "testType": patient.testType.testType.rawValue,
             "isEmergency": patient.emergency.isEmergency,
-            "emergencyNotes": patient.emergency.notes,
+            "emergencyName": patient.emergency.emergencyName,
+            "emergencyNo": patient.emergency.emergencyNo,
+
  
         ]) { error in
             if let error = error {
@@ -121,7 +125,9 @@ class DataManager: ObservableObject {
                 "email": patient.contact.email,
             //    "testType": patient.testType.testType.rawValue,
                 "isEmergency": patient.emergency.isEmergency,
-                "emergencyNotes": patient.emergency.notes,
+                "emergencyName": patient.emergency.emergencyName,
+                "emergencyNo": patient.emergency.emergencyNo,
+
     
             ]) { error in
                 if let error = error {

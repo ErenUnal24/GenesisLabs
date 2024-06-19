@@ -13,6 +13,8 @@ import SwiftUI
 
 class ReportedViewModel: ObservableObject {
     @Published var tests: [Test] = []
+    @Published var rejectedTests: [Test] = []
+
     private var dataManager = TestDataManager()
     private var cancellables: Set<AnyCancellable> = []
 
@@ -28,5 +30,7 @@ class ReportedViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
    
+    
 }

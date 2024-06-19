@@ -13,7 +13,7 @@ struct AuthDataResultModel {
     let email: String?
     let photoUrl: String?
     
-    init(user: User) {
+    init(user: FirebaseAuth.User) {
         self.uid = user.uid
         self.email = user.email
         self.photoUrl = user.photoURL?.absoluteString
@@ -38,26 +38,25 @@ final class AuthenticationManager {
         return AuthDataResultModel(user: authDataResult.user)
     }
     
-    
-    
+    @discardableResult
     func signInUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
         return AuthDataResultModel(user: authDataResult.user)
-    }
-    
-    //****
-    
-    //****
-    
-    func resetPassword(email: String) async throws {
-        try await Auth.auth().sendPasswordReset(withEmail: email)
-
         
     }
     
-    
-    func signOut() throws {
-        try Auth.auth().signOut()
+    func resetPassword(email: String) async throws {
+        try await Auth.auth().sendPasswordReset(withEmail: email)
     }
     
+    func signOut() throws {
+        do {
+            try AuthenticationManager.shared.signOut()
+            print("Successfully signed out")
+        } catch {
+            print("Failed to sign out: \(error.localizedDescription)")
+            throw error
+        }
+    }
+
 }

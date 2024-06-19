@@ -42,7 +42,7 @@ struct AddAnalysisView: View {
                     HStack {
                         Text("\(key):")
                             .font(.body)
-                            .frame(width: 66, alignment: .trailing)
+                            .frame(width: 75, alignment: .trailing)
                         TextField("Değer", text: Binding(
                             get: { testResultsViewModel.parameterValues[key] ?? "" },
                             set: { newValue in
@@ -95,7 +95,8 @@ struct AddAnalysisView_Previews: PreviewProvider {
                 ),
                 emergency: Patient.Emergency(
                     isEmergency: false,
-                    notes: "No notes"
+                    emergencyName: "Julia",
+                    emergencyNo: "53453463643"
                 )
             ),
             status: Test.Status(status: .numuneBekliyor),

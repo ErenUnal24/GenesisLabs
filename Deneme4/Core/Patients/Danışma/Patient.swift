@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Patient: Identifiable, Codable {
+struct Patient: Identifiable, Codable{
     let id: UUID
     let documentID: String?
     var general: General
@@ -47,7 +47,8 @@ extension Patient {
 extension Patient {
     struct Emergency: Codable {
         var isEmergency: Bool
-        var notes      : String
+        var emergencyName      : String
+        var emergencyNo : String
     }
 }
 
@@ -65,7 +66,8 @@ extension Patient {
                                             email: "")
         
         let emergency = Patient.Emergency(isEmergency: false,
-                                                notes: "")
+                                                emergencyName: "",
+                                            emergencyNo: "")
         
         
         return Patient(id: UUID(), documentID: nil, general: general, contact: contact, emergency: emergency)

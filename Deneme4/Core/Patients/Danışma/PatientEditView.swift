@@ -70,7 +70,7 @@ struct PatientEditView: View {
              
             Section {
                 Toggle("Acil Durum Kişisi", isOn: $vm.newPatient.emergency.isEmergency)
-                TextEditor(text: $vm.newPatient.emergency.notes)
+                TextEditor(text: $vm.newPatient.emergency.emergencyName)
             }
 
             Button("Hepsini Temizle", role: .destructive) {
@@ -105,13 +105,9 @@ struct PatientEditView: View {
                     vm.editPatient()
                     dismiss()
                 }
-                //.disabled(!vm.isValid)
+                .disabled(!vm.isValid)
             }
-            ToolbarItem(placement: .cancellationAction) {
-                Button("İptal", role: .cancel) {
-                    dismiss()
-                }
-            }
+         
         }
     }
 }

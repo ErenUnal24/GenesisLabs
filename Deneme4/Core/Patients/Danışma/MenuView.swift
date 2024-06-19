@@ -14,24 +14,34 @@ struct MenuView: View {
     
 
     var body: some View {
-            NavigationView {
+            NavigationStack {
+                
                 List {
-                    NavigationLink(destination: PatientView()) {
+                    NavigationLink(destination: PatientsView()) {
                         MenuRow(icon: "person.2.fill", title: "Hastalar")
                     }
                     
 
+                    NavigationLink(destination: AddPatientView { patient in
+                        // Burada patient ile ne yapacağınızı belirtin
+                        print("Hasta eklendi: \(patient)")
+                    }) {
+                        MenuRow(icon: "person.fill", title: "Hasta Kayıt")
+                    }
+                    
+                    
                     NavigationLink(destination: AddTestView()) {
                         MenuRow(icon: "flask.fill", title: "Test Kayıt")
                     }
                     
-                    Divider()
+                    
+                  
                      
-                    Button(action: {
-                        shouldShowCreatePatient.toggle()
-                    }) {
-                        MenuRow(icon: "person.fill", title: "Yeni Hasta")
-                    }
+//                    Button(action: {
+//                        shouldShowCreatePatient.toggle()
+//                    }) {
+//                        MenuRow(icon: "person.fill", title: "Yeni Hasta")
+//                    }
                 }
                 .navigationTitle("Ana Menü")
                 .listStyle(InsetGroupedListStyle())
@@ -40,10 +50,16 @@ struct MenuView: View {
                         print("New Patient")
                         dump(patient)
                         vm.add(patient)
+                        
+                        
                     }
                 }
+                
+                
             }
+        
     }
+    
 }
 
 struct MenuRow: View {

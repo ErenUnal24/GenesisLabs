@@ -10,7 +10,7 @@ import SwiftUI
 struct MenuViewLab: View {
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 NavigationLink(destination: PatientViewForSample()) {
                     MenuRow(icon: "person.2.fill", title: "Hastalar")
