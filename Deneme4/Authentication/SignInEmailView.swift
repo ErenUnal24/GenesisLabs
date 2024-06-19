@@ -30,7 +30,6 @@ struct SignInEmailView: View {
                 Spacer()
                     .frame(height: 50)
                 
-                // Logo ve Uygulama Adı
                 VStack {
                     Image("logo")
                         .resizable()
@@ -61,7 +60,7 @@ struct SignInEmailView: View {
                         .shadow(radius: 5)
                 }
                 
-                // Giriş Butonu
+                // GİRİŞ
                 Button {
                     Task {
                         do {

@@ -132,7 +132,7 @@ struct AddExpertOpinionView: View {
                             if selectedStatus == "Onayla" {
                                                     generatePDF()
                                                 }
-                            dismiss()
+                            //dismiss()
                         },
                         secondaryButton: .cancel(Text("Hayır"))
                     )

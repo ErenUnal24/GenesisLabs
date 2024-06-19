@@ -1,16 +1,15 @@
 //
-//  AnalysisWaitingView.swift
+//  LastListView.swift
 //  Deneme4
 //
-//  Created by Eren on 13.06.2024.
+//  Created by Eren on 19.06.2024.
 //
 
 import SwiftUI
 
-struct AnalysisWaitingView: View {
-    @StateObject private var viewModel = ResultAcceptedViewModel()
-    @StateObject private var dm = TestDataManager()
-
+struct LastListView: View {
+    @EnvironmentObject var dataManager: TestDataManager
+    @StateObject private var viewModel = LastListViewModel()
     @State private var searchText = ""
 
     var filteredTests: [Test] {
@@ -26,7 +25,8 @@ struct AnalysisWaitingView: View {
         NavigationView {
             List {
                 ForEach(filteredTests) { test in
-                    NavigationLink(destination: AddAnalysisView(test: test, dataManager: dm)) {
+                    let testResultsViewModel = TestResultsViewModel(test: test, dataManager: dataManager)
+                    NavigationLink(destination: AddExpertOpinionView(test: test, testResultsViewModel: testResultsViewModel).environmentObject(dataManager)) {
                         VStack(alignment: .leading) {
                             Text(test.patient.general.name)
                                 .font(.headline)
@@ -40,13 +40,15 @@ struct AnalysisWaitingView: View {
                     }
                 }
             }
-            .navigationTitle("Analiz Bekliyor")
+            .navigationTitle("Raporlananlar")
             .searchable(text: $searchText)
         }
     }
 }
 
-
-#Preview {
-    AnalysisWaitingView()
+struct LastListView_Previews: PreviewProvider {
+    static var previews: some View {
+        LastListView()
+            .environmentObject(TestDataManager())
+    }
 }

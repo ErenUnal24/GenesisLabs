@@ -14,7 +14,6 @@
      private var dataManager = TestDataManager()
      private var cancellables = Set<AnyCancellable>()
      @Published var searchText: String = ""
-     @Published var searchType: SearchType = .tcNo
 
      init() {
          dataManager.$tests
@@ -27,18 +26,18 @@
      
      
      
-     var filteredTests: [Test] {
-             if searchText.isEmpty {
-                 return tests
-             } else {
-                 switch searchType {
-                 case .tcNo:
-                     return tests.filter { $0.tcNo.contains(searchText) }
-                 case .name:
-                     return tests.filter { $0.patient.general.name.lowercased().contains(searchText.lowercased()) }
-                 }
-             }
-         }
+//     var filteredTests: [Test] {
+//             if searchText.isEmpty {
+//                 return tests
+//             } else {
+//                 switch searchType {
+//                 case .tcNo:
+//                     return tests.filter { $0.tcNo.contains(searchText) }
+//                 case .name:
+//                     return tests.filter { $0.patient.general.name.lowercased().contains(searchText.lowercased()) }
+//                 }
+//             }
+//         }
      
      
      func fetchTests() {

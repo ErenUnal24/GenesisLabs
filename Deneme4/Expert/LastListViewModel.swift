@@ -1,8 +1,8 @@
 //
-//  ExpertViewModel.swift
+//  LastListViewModel.swift
 //  Deneme4
 //
-//  Created by Eren on 15.06.2024.
+//  Created by Eren on 19.06.2024.
 //
 
 import Foundation
@@ -11,24 +11,17 @@ import Foundation
 import Combine
 import SwiftUI
 
-class ExpertViewModel: ObservableObject {
+class LastListViewModel: ObservableObject {
     @Published var tests: [Test] = []
     private var dataManager = TestDataManager()
     private var cancellables: Set<AnyCancellable> = []
     
 
     init() {
-        fetchReportWaitingTests()
+        fetchLastListTests()
     }
 
-    func fetchReportWaitingTests() {
-        dataManager.fetchReportsWaiting()
-        dataManager.$tests
-            .sink { [weak self] tests in
-                self?.tests = tests
-            }
-            .store(in: &cancellables)
-    }
+
     
     func fetchLastListTests() {
         dataManager.fetchLastView()

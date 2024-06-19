@@ -13,23 +13,25 @@ struct SampleWaitingView: View {
     @StateObject private var vm = TestViewModel()
     @State private var shouldShowSampleAccepted: Bool = false
 
+    @State private var searchText = ""
+
+    var filteredTests: [Test] {
+        if searchText.isEmpty {
+            return vm.tests
+        } else {
+            return vm.tests.filter { $0.patient.general.name.localizedCaseInsensitiveContains(searchText) ||
+                $0.patient.general.tcNo.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
 
     
     var body: some View {
         NavigationView {
-            VStack {
-                SearchBar(text: $vm.searchText)
-                    .padding()
-                
-                Picker("Search Type", selection: $vm.searchType) {
-                    Text("T.C. No").tag(TestViewModel.SearchType.tcNo)
-                    Text("Name").tag(TestViewModel.SearchType.name)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
+            List {
+               
                 
                 
-                List(vm.filteredTests) { test in
+                ForEach(filteredTests) { test in
                     NavigationLink(destination: StatusUpdateView(dm: dm, test: test)) {
                         
                     
@@ -47,13 +49,15 @@ struct SampleWaitingView: View {
                     }
                     .padding()
                 }
-                .navigationTitle("Numune Bekleyenler")
-                .onAppear {
-                    dm.fetchSampleWaitingTests()
+                
                     
                     
                 }
                 }
+            .navigationTitle("Numune Bekleyenler")
+            .searchable(text: $searchText)
+            .onAppear {
+                dm.fetchSampleWaitingTests()
             }
         }
     }

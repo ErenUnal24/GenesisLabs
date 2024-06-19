@@ -24,7 +24,7 @@ struct MenuViewExpert: View {
                 }
                 .padding(.vertical)
 
-                NavigationLink(destination: AnalysisWaitingView().environmentObject(dm)) {
+                NavigationLink(destination: LastListView().environmentObject(dm)) {
                     MenuRow(icon: "person.fill.checkmark", title: "Onaylı Rapor")
                 }
                 .padding(.vertical)
@@ -41,3 +41,6 @@ struct MenuViewExpert: View {
 #Preview {
     MenuViewExpert()
 }
+
+
+

@@ -67,6 +67,7 @@ struct AddReportsView: View {
                         primaryButton: .default(Text("Evet")) {
                             dm.saveReport(for: testResultsViewModel.test, report: reportText)
                             onAddAnalysis(reportText)
+                            dismiss()
 
                         },
                         secondaryButton: .cancel(Text("Hayır"))

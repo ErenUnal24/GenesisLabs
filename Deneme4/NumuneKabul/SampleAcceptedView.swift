@@ -11,52 +11,54 @@ struct SampleAcceptedView: View {
     @StateObject private var dm = TestDataManager()
     @StateObject private var vm = SampleAcceptedViewModel()
     @State private var shouldShowSampleAccepted: Bool = false
-
-
+    
+    
+    @State private var searchText = ""
+    
+    var filteredTests: [Test] {
+        if searchText.isEmpty {
+            return vm.tests
+        } else {
+            return vm.tests.filter { $0.patient.general.name.localizedCaseInsensitiveContains(searchText) ||
+                $0.patient.general.tcNo.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+    
     
     var body: some View {
         NavigationView {
-            VStack {
-                SearchBar(text: $vm.searchText)
-                    .padding()
-                
-                Picker("Search Type", selection: $vm.searchType) {
-                    Text("T.C. No").tag(TestViewModel.SearchType.tcNo)
-                    Text("Name").tag(TestViewModel.SearchType.name)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-                
-                
-                List(vm.filteredTests) { test in
+            List {
+                ForEach(filteredTests) { test in
                     NavigationLink(destination: StatusUpdateView(dm: dm, test: test)) {
                         
-                    
-                    VStack(alignment: .leading) {
-                        Text("Test Type: \(test.testType)")
-                            .font(.headline)
-                        Text("Hasta Adı: \(test.patient.general.name)")
-                            .font(.subheadline)
-                        Text("Hasta TC : \(test.patient.general.tcNo)")
-                            .font(.subheadline)
-                        Text("Status     : \(test.status.status.rawValue)")
-                            .font(.subheadline)
+                        
+                        VStack(alignment: .leading) {
+                            Text("Test Türü: \(test.testType.testType.rawValue)")
+                                .font(.headline)
+                            Text("Hasta Adı: \(test.patient.general.name)")
+                                .font(.subheadline)
+                            Text("Hasta TC : \(test.patient.general.tcNo)")
+                                .font(.subheadline)
+                            Text("Durum     : \(test.status.status.rawValue)")
+                                .font(.subheadline)
+                        }
+                        .padding()
                     }
-                    .padding()
-                }
-                .navigationTitle("Test Bekleyenler")
-                .onAppear {
-                    dm.fetchSampleAcceptedTests()
-                    
+                    .navigationTitle("Test Bekleyenler")
                     
                 }
-                }
+            }
+            .navigationTitle("Test Bekleyenler")
+            .searchable(text: $searchText)
+            
+            .onAppear {
+                dm.fetchSampleAcceptedTests()
+                
             }
         }
     }
+    
 }
-
-
 
 struct TestDetailsView: View {
     var test: Test

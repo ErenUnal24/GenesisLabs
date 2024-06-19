@@ -47,9 +47,11 @@ struct AddTestView: View {
                             .disabled(true)
                         
                         Section(header: Text("").bold().foregroundStyle(.red)) {
-                            Toggle("Emergency", isOn: $vm.newTest.patient.emergency.isEmergency).foregroundStyle(.red).bold()
+                            Toggle("Acil Durum Kişisi", isOn: $vm.newTest.patient.emergency.isEmergency).foregroundStyle(.red).bold()
                                 .disabled(true)
-                            TextField("Emergency Notes", text: $vm.newTest.patient.emergency.emergencyName).foregroundStyle(.red)
+                            TextField("İsim", text: $vm.newTest.patient.emergency.emergencyName).foregroundStyle(.red)
+                                .disabled(true)
+                            TextField("Tel No", text: $vm.newTest.patient.emergency.emergencyNo).foregroundStyle(.red)
                                 .disabled(true)
                         }
                     } else {

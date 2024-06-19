@@ -17,25 +17,25 @@ struct MenuViewBiologist: View {
                 .padding(.vertical)
                 
                 NavigationLink(destination: AnalysisWaitingView()) {
-                    MenuRow(icon: "flask", title: "Analiz Bekleyen")
+                    MenuRow(icon: "list.clipboard", title: "Analiz Bekleyen")
                 }
                 .padding(.vertical)
                 
                 
                 
                 NavigationLink(destination: ReportWaitingView()) {
-                    MenuRow(icon: "flask.fill", title: "Rapor Bekleyen")
+                    MenuRow(icon: "pencil.and.list.clipboard", title: "Rapor Bekleyen")
                 }
                 .padding(.vertical)
                 
                 NavigationLink(destination: ReportedView()) {
-                    MenuRow(icon: "flask.fill", title: "Raporlanmış")
+                    MenuRow(icon: "list.clipboard.fill", title: "Raporlanmış")
                 }
                 .padding(.vertical)
                 
                 NavigationLink(destination: RejectedView()) {
                 VStack(alignment: .leading) {
-                    MenuRow(icon: "flask.fill", title: "Yeniden Raporlanacak")
+                    MenuRow(icon: "arrow.triangle.2.circlepath.doc.on.clipboard", title: "Yeniden Raporlanacak")
                         .padding(.vertical)
                     
                     Text("Uzman Tarafından Reddedildi. Revize Gerekli.")

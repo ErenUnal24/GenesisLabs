@@ -26,7 +26,7 @@ struct MenuView: View {
                         // Burada patient ile ne yapacağınızı belirtin
                         print("Hasta eklendi: \(patient)")
                     }) {
-                        MenuRow(icon: "person.fill", title: "Hasta Kayıt")
+                        MenuRow(icon: "person.fill.badge.plus", title: "Hasta Kayıt")
                     }
                     
                     

@@ -18,13 +18,13 @@ struct MenuViewSampleAccept: View {
                 .padding(.vertical)
                 
                 NavigationLink(destination: SampleWaitingView()) {
-                    MenuRow(icon: "flask", title: "Numune Bekleyen")
+                    MenuRow(icon: "syringe", title: "Numune Bekleyen")
                 }
                 .padding(.vertical)
                 
                 
                 NavigationLink(destination: SampleAcceptedView()) {
-                    MenuRow(icon: "flask.fill", title: "Numunesi Alınmış")
+                    MenuRow(icon: "syringe.fill", title: "Numunesi Alınmış")
                 }
                 .padding(.vertical)
    

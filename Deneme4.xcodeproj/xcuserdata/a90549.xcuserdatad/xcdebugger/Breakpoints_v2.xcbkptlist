@@ -3,4 +3,52 @@
    uuid = "11534633-2DFC-4E39-BB5F-8CAB9F9073F0"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D50D21E-9A05-418E-B578-2A5A042346B0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Deneme4/Biyolog/AnalysisWaitingView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "filteredTests"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "6D50D21E-9A05-418E-B578-2A5A042346B0 - 8bd12ad235b178c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Deneme4.AnalysisWaitingView.filteredTests.getter : Swift.Array&lt;Deneme4.Test&gt;"
+                  moduleName = "Deneme4"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a90549/Desktop/swifu%C4%B1/Deneme4/Deneme4/Biyolog/AnalysisWaitingView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20">
+               </Location>
+               <Location
+                  uuid = "6D50D21E-9A05-418E-B578-2A5A042346B0 - ea0c7f3e1f93f5b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Deneme4.Test) -&gt; Swift.Bool in Deneme4.AnalysisWaitingView.filteredTests.getter : Swift.Array&lt;Deneme4.Test&gt;"
+                  moduleName = "Deneme4"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a90549/Desktop/swifu%C4%B1/Deneme4/Deneme4/Biyolog/AnalysisWaitingView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

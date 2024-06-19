@@ -582,6 +582,95 @@ class TestDataManager: ObservableObject {
         }
     }
 
+    
+    
+    func fetchLastView() {
+        tests.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection("Tests").whereField("status", isEqualTo: "Uzman Onayından Geçti")
+        ref.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let documentID = document.documentID
+                    let patientID = data["patientID"] as? String ?? ""
+                    let statusString = data["status"] as? String ?? ""
+                    let status = Test.Status(status: Test.Status.StatusEnum(rawValue: statusString) ?? .numuneBekliyor)
+                    let testTypeString = data["testType"] as? String ?? ""
+                    let testType = Test.TestType(testType: Test.TestType.TestTypeEnum(rawValue: testTypeString) ?? .seciniz)
+                    let sampleTypeString = data["sampleType"] as? String ?? ""
+                    let sampleType = Test.SampleType(sampleType: Test.SampleType.SampleTypeEnum(rawValue: sampleTypeString) ?? .seciniz)
+                    
+                    // Parameters
+                    let parameters = data["parameters"] as? [String: String] ?? [:]
+                    
+                    // Analysis
+                    let analysis = data["analysis"] as? String ?? nil
+                    
+                    // Report
+                    let report = data["report"] as? String ?? nil
+                    
+                    // Consultancy
+                    let consultancy = data["consultancy"] as? Bool ?? false
+                    
+                    // Patient bilgilerini Firestore'dan al
+                    let patientRef = db.collection("Patients").document(patientID)
+                    patientRef.getDocument { (patientDocument, error) in
+                        guard let patientData = patientDocument?.data(), error == nil else {
+                            print(error?.localizedDescription ?? "Error fetching patient")
+                            return
+                        }
+                        let patientName = patientData["name"] as? String ?? ""
+                        let patientGenderString = patientData["gender"] as? String ?? ""
+                        let patientGender = Patient.General.Gender(rawValue: patientGenderString) ?? .Erkek
+                        let patientBirthdate = (patientData["birthdate"] as? Timestamp)?.dateValue() ?? Date()
+                        let patientTcNo = patientData["tcNo"] as? String ?? ""
+                        
+                        let patient = Patient(
+                            id: UUID(),
+                            documentID: patientID,
+                            general: Patient.General(
+                                name: patientName,
+                                gender: patientGender,
+                                birthdate: patientBirthdate,
+                                tcNo: patientTcNo
+                            ),
+                            contact: Patient.Contact(
+                                phoneNumber: patientData["phoneNumber"] as? String ?? "",
+                                email: patientData["email"] as? String ?? ""
+                            ),
+                            emergency: Patient.Emergency(
+                                isEmergency: patientData["isEmergency"] as? Bool ?? false,
+                                emergencyName: patientData["emergencyName"] as? String ?? "",
+                                emergencyNo: patientData["emergencyNo"] as? String ?? ""
+                            )
+                        )
+                        
+                        let test = Test(
+                            id: UUID(),
+                            documentID: documentID,
+                            patient: patient,
+                            status: status,
+                            testType: testType,
+                            sampleType: sampleType,
+                            parameters: parameters,
+                            analysis: analysis,
+                            report: report,
+                            consultancy: consultancy
+                        )
+                        DispatchQueue.main.async {
+                            self.tests.append(test)
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     
     

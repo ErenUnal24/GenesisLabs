@@ -14,34 +14,36 @@ struct ResultWaitingView: View {
 
 
     
+    @State private var searchText = ""
+
+    var filteredTests: [Test] {
+        if searchText.isEmpty {
+            return vm.tests
+        } else {
+            return vm.tests.filter { $0.patient.general.name.localizedCaseInsensitiveContains(searchText) ||
+                $0.patient.general.tcNo.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+    
+    
+    
     var body: some View {
         NavigationView {
-            VStack {
-                SearchBar(text: $vm.searchText)
-                    .padding()
-                
-                Picker("Search Type", selection: $vm.searchType) {
-                    Text("T.C. No").tag(TestViewModel.SearchType.tcNo)
-                    Text("Name").tag(TestViewModel.SearchType.name)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-                
-                
-                List(vm.filteredTests) { test in
+            List {
+               
+                ForEach(filteredTests) { test in
                     NavigationLink(destination: AddResultsView(test: test, dataManager: dm)) {
                         
                     
                     VStack(alignment: .leading) {
-                        Text("Test Type: \(test.testType)")
+                        Text("Test Türü: \(test.testType.testType.rawValue)")
                             .font(.headline)
-                        Text("Patient Name: \(test.patient.general.name)")
-                            .font(.subheadline)
-                        Text("Patient TCNo: \(test.patient.general.tcNo)")
+                        
+                        Text("Hasta TCNo: \(test.patient.general.tcNo)")
                             .font(.subheadline)
                         Text("Patient Ad: \(test.patient.general.name)")
                             .font(.subheadline)
-                        Text("Status: \(test.status.status.rawValue)")
+                        Text("Durum: \(test.status.status.rawValue)")
                             .font(.subheadline)
                     }
                     .padding()
@@ -54,6 +56,15 @@ struct ResultWaitingView: View {
                 }
                 }
             }
+            .navigationTitle("Test Bekleyenler")
+            .searchable(text: $searchText)
+            .onAppear {
+                dm.fetchSampleAcceptedTests()
+                
+                
+            }
+            
+            
         }
     }
 }

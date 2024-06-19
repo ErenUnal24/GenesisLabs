@@ -74,7 +74,9 @@ struct UpdateReportView: View {
                         primaryButton: .default(Text("Evet")) {
                             dm.updateReport(for: testResultsViewModel.test, report: reportText)
                             onAddAnalysis(reportText)
-
+                            dismiss()
+                            dismiss()
+                            
                         },
                         secondaryButton: .cancel(Text("Hayır"))
                     )
