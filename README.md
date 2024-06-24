@@ -5,7 +5,7 @@
 ![Screenshot 2024-06-20 at 02 13 20](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/8b60fae1-6969-4c10-b3ed-3899966607ff)
 ![Screenshot 2024-06-20 at 02 14 14](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/1e2e8bd1-c118-4073-992d-ae89a61fdc32)
 ![Screenshot 2024-06-20 at 02 16 49](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/3645eaf3-7553-4076-900d-4bf28e887cf6)
-![Screenshot 2024-06-20 at 02 17 07](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/2f56bd44-d2e2-4625-a3ce-dcd386653f5d)
+![Screenshot 2024-06-20 at 02 17 07](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/6c5dc88e-81f1-40dc-90cd-22ef56d2201e)
 ![Screenshot 2024-06-20 at 02 19 17](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/0d8d2963-5927-4f85-acbc-e3b36a9a950f)
 ![Screenshot 2024-06-20 at 02 19 29](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/999f172f-1e31-4fd4-9807-60e436a23f64)
 ![Screenshot 2024-06-20 at 02 23 52](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/a88c40e4-741b-4861-aa76-1bf88f946191)
