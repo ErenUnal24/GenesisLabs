@@ -20,6 +20,24 @@ Bu uygulamada bir genetik laboratuvarının iş akışını mobil uygulamaya ent
 
 Rapor oluştuktan sonra hastalar uygulamanın giriş ekranında bulunan "Hasta Girişi" butonuna tıklayıp kendi kimlik numaralarıyla raporlarını sorgulayabilir.
 
+
+In this application, I integrated the workflow of a genetic laboratory into a mobile app. There are six different types of employee logins. When each user logs in with their credentials, they are directed to different screens based on their assigned tasks.
+
+Admin User: This user has access to all screens and can add new users to the system, unlike other users. (For example, the admin can add a user named Eren as a biologist with their email address and a default password. Eren can log in with these details and update the password.)
+
+Reception User: This user enters patient information into the system when a patient arrives at the laboratory, creating a new patient profile. They can also create a new test using the patient’s ID number. (For example, a CFTR Gene analysis test might be created for a patient named Ayşe). The test status is set to "Awaiting Sample" and can now be viewed on the Sample Acceptance screen.
+
+Sample Acceptance User: This user handles the process when the patient goes to the Sample Acceptance unit. They collect the sample from the patient for lab work. Once the sample is taken, the test status is updated to "Awaiting Test" and is visible on the Laboratory screen.
+
+Laboratory User: This user receives the sample and performs the necessary tests. After completing the test, they update the test with the results. Once the results are entered and saved, the test status is updated to "Awaiting Analysis" and appears on the Biologist users’ screens.
+
+Biologist User: This user reviews the results and enters an analysis. Once the analysis is entered, the test status is updated to "Awaiting Report" and is visible under the "Pending Reports" section on the biologists' screens. After the report is completed, the test status is updated to "Awaiting Approval" and moves to the Specialist user's screen.
+
+Specialist User: This user reviews the analysis and report results entered by the biologist and compares them with the laboratory findings. If the specialist approves, they can check the "Genetic Counseling Recommended" toggle. A PDF report is then generated. If the specialist does not approve, the test status is updated to "Rejected by Specialist" and moves to the "To Be Revised" section on the biologists' screens, where the process starts again.
+
+After the report is created, patients can click the "Patient Login" button on the app's main screen and use their ID numbers to view their reports.
+
+
 ![Screenshot 2024-06-20 at 02 11 47](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/81c0cec7-e8ab-4760-a766-700e1f1eb3eb)
 ![Screenshot 2024-06-20 at 02 11 58](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/d717898b-da25-4a34-b2da-de3ef6ffa36c)
 ![Screenshot 2024-06-20 at 02 12 09](https://github.com/ErenUnal24/GenesisLabs/assets/92259243/f3c336a4-5771-4361-987c-8af5b9196b85)
